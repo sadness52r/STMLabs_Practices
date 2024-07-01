@@ -10,7 +10,8 @@ namespace Practice2_Basics
     {
         static void Main(string[] args)
         {
-
+            Conditions_Task5 conditions_Task5 = new Conditions_Task5();
+            conditions_Task5.Run();
         }
     }
 }
