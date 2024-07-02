@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace Practice2_Basics
 {
-    internal class Loops_Task2
+    internal class LoopsTask2
     {
         private const double FIRSTDAYNORM = 10;
         private const double RATE = 0.1;
         private const int DAYS = 7;
+        private double normIntoDay;
         private double generalNorm;
 
-        public Loops_Task2() 
+        public LoopsTask2() 
         {
             generalNorm = FIRSTDAYNORM;
+            normIntoDay = FIRSTDAYNORM;
         }
 
         public void Run()
         {
             for (int i = 1; i < DAYS; i++)
             {
-                generalNorm *= (1 + RATE);
+                normIntoDay *= (1 + RATE);
+                generalNorm += normIntoDay;
             }
             Console.WriteLine($"In {DAYS} days the sportsman walked {generalNorm} km");
         }
