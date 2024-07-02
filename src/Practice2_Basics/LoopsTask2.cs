@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practice2_Basics
 {
@@ -14,7 +10,7 @@ namespace Practice2_Basics
         private double normIntoDay;
         private double generalNorm;
 
-        public LoopsTask2() 
+        public LoopsTask2()
         {
             generalNorm = FIRSTDAYNORM;
             normIntoDay = FIRSTDAYNORM;
