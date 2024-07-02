@@ -10,7 +10,8 @@ namespace Practice2_Basics
     {
         static void Main(string[] args)
         {
-
+            Loops_Task2 task = new Loops_Task2();
+            task.Run();
         }
     }
 }
