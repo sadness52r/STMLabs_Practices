@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practice2_Basics
 {
@@ -10,7 +6,13 @@ namespace Practice2_Basics
     {
         static void Main(string[] args)
         {
-
+            SetsTask5 setsTask5_2 = new SetsTask5(10);
+            Console.WriteLine();
+            SetsTask5 setsTask5_3 = new SetsTask5(1, 20, 8);
+            Console.WriteLine();
+            setsTask5_2.Run();
+            Console.WriteLine();
+            setsTask5_3.Run();
         }
     }
 }
