@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice2_Basics
+﻿namespace Practice2_Basics
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
+            DataTask1 dataTask1 = new DataTask1();
+            dataTask1.Run();
         }
     }
 }
