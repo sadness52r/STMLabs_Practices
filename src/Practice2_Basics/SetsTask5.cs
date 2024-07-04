@@ -9,91 +9,24 @@ namespace Practice2_Basics
         private HashSet<int> primes;
         private HashSet<int> composites;
 
-        public SetsTask5()
-        {
-            primes = new HashSet<int>();
-            composites = new HashSet<int>();
-            Console.WriteLine($"Random generation...");
-            RandomGeneration();
-        }
-        public SetsTask5(int n)
-        {
-            primes = new HashSet<int>();
-            composites = new HashSet<int>();
-            if (n < 0)
-            {
-                Console.WriteLine("Incorrect data. Random generation...");
-                RandomGeneration();
-            }
-            else
-            {
-                Console.WriteLine("Handle generation...");
-                HandleGeneration(n);
-            }
-        }
+        public SetsTask5() : this(n:int.MaxValue) { }
+        public SetsTask5(int n) : this(start: 0, end: int.MaxValue, n) { }
         public SetsTask5(int start, int end, int n)
         {
             primes = new HashSet<int>();
             composites = new HashSet<int>();
-            if (start > end || n < 0)
-            {
-                Console.WriteLine($"Incorrect data. Random generation...");
-                RandomGeneration();
-            }
-            else
-            {
-                Console.WriteLine("Range generation...");
-                RangeGeneration(start, end, n);
-            }
+            RangeGeneration(start > end ? 0 : start, end, n < 0 ? 1 : n);
         }
 
-        private void RandomGeneration()
-        {
-            nums = new HashSet<int>();
-            Random rnd = new Random();
-            int n = rnd.Next();
-            for (int i = 0; i < n; i++)
-            {
-                int num = rnd.Next();
-                nums.Add(num);
-                Console.WriteLine($"New number: {num} added!");
-            }
-            Console.WriteLine("Your set:");
-            PrintSet(nums);
-        }
         private void RangeGeneration(int start, int end, int n)
         {
             nums = new HashSet<int>();
             Random rnd = new Random();
             for (int i = 0; i < n; i++)
             {
-                int num = rnd.Next(start, end + 1);
+                int num = rnd.Next(start, end);
                 nums.Add(num);
-                Console.WriteLine($"New number: {num} added!");
             }
-            Console.WriteLine("Your set:");
-            PrintSet(nums);
-        }
-        private void HandleGeneration(int n)
-        {
-            nums = new HashSet<int>();
-            Random rnd = new Random();
-            Console.WriteLine("Please, enter elements of your set:");
-            for (int i = 0; i < n; i++)
-            {
-                if (int.TryParse(Console.ReadLine(), out int num))
-                {
-                    nums.Add(num);
-                    Console.WriteLine($"New number: {num} added!");
-                    continue;
-                }
-                Console.WriteLine("Your data is not integer! Random replacing...");
-                num = rnd.Next();
-                nums.Add(num);
-                Console.WriteLine($"New number: {num} added!");
-            }
-            Console.WriteLine("Your set:");
-            PrintSet(nums);
         }
         private void PrintSet(HashSet<int> set)
         {
@@ -105,6 +38,8 @@ namespace Practice2_Basics
 
         public void Run()
         {
+            Console.WriteLine("Initial set:");
+            PrintSet(nums);
             FermatTest fermatTest = new FermatTest();
             foreach (int num in nums)
             {
@@ -115,7 +50,7 @@ namespace Practice2_Basics
                 }
                 composites.Add(num);
             }
-            Console.WriteLine("Primes set:");
+            Console.WriteLine("\nPrimes set:");
             PrintSet(primes);
             Console.WriteLine("\nComposites set:");
             PrintSet(composites);
