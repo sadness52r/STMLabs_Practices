@@ -1,29 +1,32 @@
-﻿namespace Practice2_Basics
+﻿using System;
+
+namespace Practice2_Basics
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
-            myLinkedList.Print();
-            myLinkedList.Add(1);
-            myLinkedList.Print();
-            myLinkedList.Add(2);
-            myLinkedList.Print();
-            myLinkedList.Add(3);
-            myLinkedList.Print();
-            myLinkedList.Add(4);
-            myLinkedList.Print();
+            MyLinkedList<int> myLinkedList = new MyLinkedList<int>
+            {
+                1,
+                2,
+                3,
+                4
+            };
             myLinkedList.Remove(3);
-            myLinkedList.Print();
             myLinkedList.Remove(1);
-            myLinkedList.Print();
             myLinkedList.Remove(2);
-            myLinkedList.Print();
             myLinkedList.Add(5);
-            myLinkedList.Print();
             myLinkedList.Remove(0);
-            myLinkedList.Print();
+            myLinkedList.Remove(100);
+            myLinkedList.Add(8, 1);
+            myLinkedList.Add(9, 0);
+            myLinkedList.Add(10, -1);
+            myLinkedList.Add(10, 14);
+            foreach (var node in myLinkedList)
+            {
+                Console.Write($"{node} ");
+            }
         }
     }
 }
