@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Practice2_Basics
 {
@@ -25,7 +26,6 @@ namespace Practice2_Basics
             {
                 Head = newNode;
                 Size++;
-                Print();
                 return;
             }
             Node<T> tmpHead = Head;
@@ -35,7 +35,6 @@ namespace Practice2_Basics
             }
             tmpHead.Next = newNode;
             Size++;
-            Print();
         }
         public void Add(T item, int nodeNumber)
         {
@@ -55,7 +54,6 @@ namespace Practice2_Basics
             Head.Next = new Node<T>(item);
             Head.Next.Next = tmpNext;
             Head = tmpHead;
-            Print();
         }
         public void Remove(int nodeNumber)
         {
@@ -89,23 +87,19 @@ namespace Practice2_Basics
                 Head = tmpHead;
             }
             Size--;
-            Print();
         }
         public void RemoveBack()
         {
             Remove(Size - 1);
         }
-        public void Print()
+        public override string ToString()
         {
-            Node<T> tmpHead = Head;
-            Console.WriteLine("Your linked list:");
-            while (Head != null)
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var node in this)
             {
-                Console.Write($"{Head.Value} ");
-                Head = Head.Next;
+                stringBuilder.Append(node.ToString() + " ");
             }
-            Head = tmpHead;
-            Console.WriteLine();
+            return stringBuilder.ToString();
         }
         public IEnumerator<T> GetEnumerator()
         {
