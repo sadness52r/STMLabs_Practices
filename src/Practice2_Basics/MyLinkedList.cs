@@ -2,21 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace Practice2_Basics
 {
     internal class MyLinkedList<T> : IEnumerable<T>
     {
+        private ILogger logger;
+
         public Node<T> Head { get; set; }
         public int Size { get; private set; }
 
-        public MyLinkedList()
-        {
-            Head = null;
-        }
+        public MyLinkedList() :this(null) { }
         public MyLinkedList(Node<T> head)
         {
             Head = head;
+            logger = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.SetMinimumLevel(LogLevel.Information);
+            }).CreateLogger<MyLinkedList<T>>();
         }
 
         public void Add(T item)
@@ -38,9 +43,16 @@ namespace Practice2_Basics
         }
         public void Add(T item, int nodeNumber)
         {
-            if (nodeNumber < 0 || nodeNumber >= Size)
+            try
             {
-                Console.WriteLine("This node is unvailable!");
+                if (nodeNumber < 0 || nodeNumber >= Size)
+                {
+                    throw new OutOfRangeListException("This node is unvailable!");
+                }
+            }
+            catch (OutOfRangeListException e)
+            {
+                logger.LogInformation(e.Message);
                 return;
             }
             int curNode = 0;
@@ -57,9 +69,16 @@ namespace Practice2_Basics
         }
         public void Remove(int nodeNumber)
         {
-            if (nodeNumber < 0 || nodeNumber >= Size)
+            try
             {
-                Console.WriteLine("This node is unvailable!");
+                if (nodeNumber < 0 || nodeNumber >= Size)
+                {
+                    throw new OutOfRangeListException("This node is unvailable!");
+                }
+            }
+            catch (OutOfRangeListException e)
+            {
+                logger.LogInformation(e.Message);
                 return;
             }
             int curNode = 0;
@@ -71,10 +90,17 @@ namespace Practice2_Basics
                 Head = Head.Next;
                 curNode++;
             }
-            if (curNode == nodeNumber && Head == null)
+            try
             {
-                Console.WriteLine("This node is unvailable!");
-                Head = tmpHead;
+                if (curNode == nodeNumber && Head == null)
+                {
+                    Head = tmpHead;
+                    throw new OutOfRangeListException("This node is unvailable!");
+                }
+            }
+            catch (OutOfRangeListException e)
+            {
+                logger.LogInformation(e.Message);
                 return;
             }
             if (prevNode == null)
