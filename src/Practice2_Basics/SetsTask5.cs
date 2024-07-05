@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Practice2_Basics
 {
@@ -8,6 +9,7 @@ namespace Practice2_Basics
         private HashSet<int> nums;
         private HashSet<int> primes;
         private HashSet<int> composites;
+        private StringBuilder sb;
 
         public SetsTask5() : this(n:int.MaxValue) { }
         public SetsTask5(int n) : this(start: 0, end: int.MaxValue, n) { }
@@ -15,6 +17,7 @@ namespace Practice2_Basics
         {
             primes = new HashSet<int>();
             composites = new HashSet<int>();
+            sb = new StringBuilder();
             RangeGeneration(start > end ? 0 : start, end, n < 0 ? 1 : n);
         }
 
@@ -28,18 +31,26 @@ namespace Practice2_Basics
                 nums.Add(num);
             }
         }
-        private void PrintSet(HashSet<int> set)
+        private void AppendToStringBuilder(HashSet<int> set)
         {
             foreach (int i in set)
             {
-                Console.Write($"{i} ");
+                sb.Append(i.ToString() + " ");
             }
+        }
+        public override string ToString()
+        {
+            sb.Append("Initial set: ");
+            AppendToStringBuilder(nums);
+            sb.Append("\nPrimes set: ");
+            AppendToStringBuilder(primes);
+            sb.Append("\nComposites set: ");
+            AppendToStringBuilder(composites);
+            return sb.ToString();
         }
 
         public void Run()
         {
-            Console.WriteLine("Initial set:");
-            PrintSet(nums);
             FermatTest fermatTest = new FermatTest();
             foreach (int num in nums)
             {
@@ -50,10 +61,6 @@ namespace Practice2_Basics
                 }
                 composites.Add(num);
             }
-            Console.WriteLine("\nPrimes set:");
-            PrintSet(primes);
-            Console.WriteLine("\nComposites set:");
-            PrintSet(composites);
         }
     }
 }
