@@ -31,22 +31,18 @@ namespace Practice2_Basics
                 nums.Add(num);
             }
         }
-        private void AppendToStringBuilder(HashSet<int> set)
-        {
-            foreach (int i in set)
-            {
-                sb.Append(i.ToString() + " ");
-            }
-        }
+
         public override string ToString()
         {
             sb.Append("Initial set: ");
-            AppendToStringBuilder(nums);
+            sb.Append(string.Join(" ", nums));
             sb.Append("\nPrimes set: ");
-            AppendToStringBuilder(primes);
+            sb.Append(string.Join(" ", primes));
             sb.Append("\nComposites set: ");
-            AppendToStringBuilder(composites);
-            return sb.ToString();
+            sb.Append(string.Join(" ", composites));
+            string representation = sb.ToString();
+            sb.Clear();
+            return representation;
         }
 
         public void Run()
