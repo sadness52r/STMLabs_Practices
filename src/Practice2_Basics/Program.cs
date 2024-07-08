@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice2_Basics
+﻿namespace Practice2_Basics
 {
     internal class Program
     {
@@ -12,6 +6,9 @@ namespace Practice2_Basics
         {
             LoopsTask2 task = new LoopsTask2();
             task.Run();
+          
+            ConditionsTask5 conditions_Task5 = new ConditionsTask5();
+            conditions_Task5.Run();
         }
     }
 }
