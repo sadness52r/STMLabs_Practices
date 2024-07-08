@@ -1,27 +1,28 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Extensions.Logging;
 
 namespace Practice2_Basics
 {
     internal class MyLinkedList<T> : IEnumerable<T>
     {
-        private ILogger logger;
+        private readonly ILogger logger;
 
         public Node<T> Head { get; set; }
         public int Size { get; private set; }
 
-        public MyLinkedList() :this(null) { }
-        public MyLinkedList(Node<T> head)
+        public MyLinkedList() : this(null) { }
+        public MyLinkedList(Node<T> head) : this(head, LoggerFactory.Create(builder =>
         {
+            builder.AddConsole();
+            builder.SetMinimumLevel(LogLevel.Error);
+        }).CreateLogger<MyLinkedList<T>>())
+        { }
+        public MyLinkedList(Node<T> head, ILogger logger)
+        {
+            this.logger = logger;
             Head = head;
-            logger = LoggerFactory.Create(builder =>
-            {
-                builder.AddConsole();
-                builder.SetMinimumLevel(LogLevel.Information);
-            }).CreateLogger<MyLinkedList<T>>();
         }
 
         public void Add(T item)
@@ -52,7 +53,7 @@ namespace Practice2_Basics
             }
             catch (OutOfRangeListException e)
             {
-                logger.LogInformation(e.Message);
+                logger.LogError(e, e.Message);
                 return;
             }
             int curNode = 0;
@@ -78,7 +79,7 @@ namespace Practice2_Basics
             }
             catch (OutOfRangeListException e)
             {
-                logger.LogInformation(e.Message);
+                logger.LogError(e, e.Message);
                 return;
             }
             int curNode = 0;
@@ -100,7 +101,7 @@ namespace Practice2_Basics
             }
             catch (OutOfRangeListException e)
             {
-                logger.LogInformation(e.Message);
+                logger.LogError(e, e.Message);
                 return;
             }
             if (prevNode == null)

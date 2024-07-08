@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Practice2_Basics
 {
@@ -6,7 +7,13 @@ namespace Practice2_Basics
     {
         static void Main(string[] args)
         {
-            MyLinkedList<int> myLinkedList = new MyLinkedList<int>
+            ILogger logger = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.SetMinimumLevel(LogLevel.Error);
+            }).CreateLogger<MyLinkedList<int>>();
+
+            MyLinkedList<int> myLinkedList = new MyLinkedList<int>(null, logger)
             {
                 1,
                 2,
