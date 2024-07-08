@@ -6,6 +6,10 @@ using System;
     {
         static void Main(string[] args)
         {
+            SetsTask5 setsTask5_3 = new SetsTask5(1, 20, 8);
+            setsTask5_3.Run();
+            Console.WriteLine(setsTask5_3);
+          
             Console.WriteLine("Task 1:");
             StringsTask1 task1 = new StringsTask1();
             task1.Run();
