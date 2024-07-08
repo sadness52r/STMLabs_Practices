@@ -9,7 +9,6 @@ namespace Practice2_Basics
         private HashSet<int> nums;
         private HashSet<int> primes;
         private HashSet<int> composites;
-        private StringBuilder sb;
 
         public SetsTask5() : this(n:int.MaxValue) { }
         public SetsTask5(int n) : this(start: 0, end: int.MaxValue, n) { }
@@ -17,7 +16,6 @@ namespace Practice2_Basics
         {
             primes = new HashSet<int>();
             composites = new HashSet<int>();
-            sb = new StringBuilder();
             RangeGeneration(start > end ? 0 : start, end, n < 0 ? 1 : n);
         }
 
@@ -32,18 +30,10 @@ namespace Practice2_Basics
             }
         }
 
-        public override string ToString()
-        {
-            sb.Append("Initial set: ");
-            sb.Append(string.Join(" ", nums));
-            sb.Append("\nPrimes set: ");
-            sb.Append(string.Join(" ", primes));
-            sb.Append("\nComposites set: ");
-            sb.Append(string.Join(" ", composites));
-            string representation = sb.ToString();
-            sb.Clear();
-            return representation;
-        }
+        public override string ToString() =>
+            $"Initial set: {string.Join(" ", nums)}\n" +
+            $"Primes set: {string.Join(" ", primes)}\n" +
+            $"Composites set: {string.Join(" ", composites)}\n";
 
         public void Run()
         {
