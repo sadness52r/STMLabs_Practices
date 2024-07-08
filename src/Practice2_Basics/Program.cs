@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Practice2_Basics
+﻿namespace Practice2_Basics
 {
     internal class Program
     {
@@ -13,6 +13,12 @@ namespace Practice2_Basics
             Console.WriteLine("\nTask3:");
             StringsTask3 stringsTask3 = new StringsTask3();
             stringsTask3.Run();
+
+            LoopsTask2 task = new LoopsTask2();
+            task.Run();
+          
+            ConditionsTask5 conditions_Task5 = new ConditionsTask5();
+            conditions_Task5.Run();
         }
     }
 }
