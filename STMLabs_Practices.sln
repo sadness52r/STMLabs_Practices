@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice1_Git", "src\Practi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice2_Basics", "src\Practice2_Basics\Practice2_Basics.csproj", "{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice3_DelegatesEventsExceptions", "src\Practice3_DelegatesEventsExceptions\Practice3_DelegatesEventsExceptions.csproj", "{B005601F-9917-4D37-9266-EA2E061C5D14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B005601F-9917-4D37-9266-EA2E061C5D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B005601F-9917-4D37-9266-EA2E061C5D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B005601F-9917-4D37-9266-EA2E061C5D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B005601F-9917-4D37-9266-EA2E061C5D14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
