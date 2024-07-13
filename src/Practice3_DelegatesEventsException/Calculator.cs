@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Numerics;
 
 namespace Practice3_DelegatesEventsException
@@ -23,7 +22,8 @@ namespace Practice3_DelegatesEventsException
         {
             builder.AddConsole();
             builder.SetMinimumLevel(LogLevel.Error);
-        }).CreateLogger<Calculator<T>>()) { }
+        }).CreateLogger<Calculator<T>>())
+        { }
         public Calculator(ILogger logger)
         {
             this.logger = logger;
@@ -57,7 +57,7 @@ namespace Practice3_DelegatesEventsException
             number2 = (T)Convert.ChangeType(splittedExpr[2], typeof(T));
             operationType = (OperationType)splittedExpr[1][0];
         }
-            
+
         public double Calculate(string expression)
         {
             try
