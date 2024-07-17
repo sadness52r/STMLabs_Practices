@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -12,21 +11,12 @@ namespace Practice3_DelegatesEventsExceptions
         private readonly string erroneous;
         private readonly int proLimit;
         private readonly List<string> parsedStrings;
-        private readonly ILogger logger;
 
-        public List<string> ParsedStrings => isLoaded ? parsedStrings 
+        public List<string> ParsedStrings => isLoaded ? parsedStrings
             : throw new DataNotLoadedException("Data can not be load! Load your file before!");
 
-        public LimitedStringLoader(string prohibited, string erroneous, int proLimit) : this(prohibited, erroneous, proLimit, LoggerFactory.Create(builder =>
+        public LimitedStringLoader(string prohibited, string erroneous, int proLimit)
         {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Error);
-        }).CreateLogger<LimitedStringLoader>())
-        { }
-        public LimitedStringLoader(string prohibited, string erroneous, int proLimit, ILogger logger)
-        {
-            this.logger = logger;
-
             CheckIntersection(prohibited, erroneous);
 
             this.prohibited = prohibited;
@@ -47,7 +37,7 @@ namespace Practice3_DelegatesEventsExceptions
 
         public void Load(string filename)
         {
-            using (StreamReader sReader = new StreamReader(filename))
+            using (StreamReader sReader = new StreamReader($"../../{filename}"))
             {
                 string fileLine;
                 int lineNumber = 1, skippedLines = 0;
