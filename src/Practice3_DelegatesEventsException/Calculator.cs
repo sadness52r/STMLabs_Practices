@@ -34,21 +34,17 @@ namespace Practice3_DelegatesEventsException
         private double Mult(T x, T y) => (double)Convert.ChangeType(x * y, typeof(double));
         private double Divide(T x, T y) => (double)Convert.ChangeType(x / y, typeof(double));
 
-        private Operation<T> SelectOperation(OperationType _operationType)
+        private Operation<T> SelectOperation(OperationType _operationType) => _operationType switch
         {
-            switch (_operationType)
-            {
-                case OperationType.Add: return Add;
-                case OperationType.Subtract: return Subtract;
-                case OperationType.Multiply: return Mult;
-                case OperationType.Divide: return Divide;
-                default: throw new InvalidOperationException("Enter correct operation!");
-            }
-        }
+                OperationType.Add => Add,
+                OperationType.Subtract => Subtract,
+                OperationType.Multiply => Mult,
+                OperationType.Divide => Divide,
+                _ => throw new InvalidOperationException("Enter correct operation!")
+        };
         private void ParseExpression(string expression)
         {
             string[] splittedExpr = expression.Split(' ');
-            //string[] splittedExpr = expression.Split(new string[] { "+", "-", "*", "/" }, StringSplitOptions.None);
             if (splittedExpr.Length != 3)
             {
                 throw new InvalidInputException("Invalid format of expression!");
