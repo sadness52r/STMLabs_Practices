@@ -112,18 +112,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataNotLoadedException.cs" />
-    <Compile Include="InconsistentLimitsException.cs" />
-    <Compile Include="IncorrectStringException.cs" />
+    <Compile Include="CustomExceptions\DataNotLoadedException.cs" />
+    <Compile Include="CustomExceptions\InconsistentLimitsException.cs" />
+    <Compile Include="CustomExceptions\IncorrectStringException.cs" />
     <Compile Include="LimitedStringLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TooManyProhibitedLinesException.cs" />
-    <Compile Include="WrongStartingSymbolException.cs" />
+    <Compile Include="CustomExceptions\TooManyProhibitedLinesException.cs" />
+    <Compile Include="CustomExceptions\WrongStartingSymbolException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

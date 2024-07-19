@@ -13,7 +13,7 @@ namespace Practice3_DelegatesEventsExceptions
         private readonly List<string> parsedStrings;
 
         public List<string> ParsedStrings => isLoaded ? parsedStrings
-            : throw new DataNotLoadedException("Data can not be load! Load your file before!");
+            : throw new DataNotLoadedException();
 
         public LimitedStringLoader(string prohibited, string erroneous, int proLimit)
         {
@@ -37,7 +37,7 @@ namespace Practice3_DelegatesEventsExceptions
 
         public void Load(string filename)
         {
-            using (StreamReader sReader = new StreamReader($"../../{filename}"))
+            using (StreamReader sReader = new StreamReader(filename))
             {
                 string fileLine;
                 int lineNumber = 1, skippedLines = 0;
@@ -45,7 +45,7 @@ namespace Practice3_DelegatesEventsExceptions
                 {
                     if (skippedLines > proLimit)
                     {
-                        throw new TooManyProhibitedLinesException("Too many skipped lines!");
+                        throw new TooManyProhibitedLinesException();
                     }
                     if (fileLine.Length == 0 || (fileLine[0] < 'A' && fileLine[0] > 'Z'))
                     {

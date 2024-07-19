@@ -5,7 +5,7 @@
         private readonly char symbol;
 
         public WrongStartingSymbolException(int _lineNumber, char symbol) :
-            base(_lineNumber, $"Wrong starting symbol {symbol} in line {_lineNumber}")
+            base(_lineNumber, symbol)
         {
             this.symbol = symbol;
         }

@@ -4,6 +4,6 @@ namespace Practice3_DelegatesEventsExceptions
 {
     internal class DataNotLoadedException : Exception
     {
-        public DataNotLoadedException(string message) : base(message) { }
+        public DataNotLoadedException() : base("Data can not be load! Load your file before!") { }
     }
 }

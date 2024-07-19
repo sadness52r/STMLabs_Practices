@@ -4,6 +4,6 @@ namespace Practice3_DelegatesEventsExceptions
 {
     internal class TooManyProhibitedLinesException : Exception
     {
-        public TooManyProhibitedLinesException(string message) : base(message) { }
+        public TooManyProhibitedLinesException() : base("Too many skipped lines!") { }
     }
 }
