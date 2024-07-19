@@ -4,14 +4,8 @@ namespace Practice3_DelegatesEventsExceptions
 {
     internal class SourceTask4
     {
-        private event Action<string> notify;
         private readonly string name;
-
-        public event Action<string> NotifyCompleted
-        {
-            add { notify += value; }
-            remove { notify -= value; }
-        }
+        public event Action<string> Notify;
 
         public SourceTask4() : this("Unknown") { }
         public SourceTask4(string name)
@@ -21,7 +15,7 @@ namespace Practice3_DelegatesEventsExceptions
 
         public void GenerateEvent()
         {
-            notify?.Invoke(name);
+            Notify?.Invoke(name);
         }
     }
 }
