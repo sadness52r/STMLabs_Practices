@@ -14,7 +14,10 @@ namespace Practice4_OOP
 
         private void buttonOpenMain_Click(object sender, EventArgs e)
         {
-
+            if (comboBoxChooseEmployee.SelectedText == string.Empty)
+            {
+                //ошибка
+            }
         }
     }
 }
