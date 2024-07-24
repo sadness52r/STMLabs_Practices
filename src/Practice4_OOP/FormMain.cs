@@ -12,23 +12,38 @@ namespace Practice4_OOP
 {
     public partial class FormMain : Form
     {
-        private JobTitle jobTitle;
+        private string jobTitle;
+        private Consultant? consultant;
 
-        public FormMain(JobTitle jobTitle)
+        public FormMain(string jobTitle)
         {
             this.jobTitle = jobTitle;
+            switch (jobTitle)
+            {
+                case "Consultant":
+                    consultant = new Consultant();
+                    break;
+                default:
+                    break;
+            }
             InitializeComponent();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            switch (jobTitle)
+            this.Text = jobTitle;
+            this.labelJobTitle.Text = jobTitle;
+            ClientsLoader clientLoader = new ClientsLoader("clients.txt");
+            if (consultant != null)
             {
-                case JobTitle.Consultant:
-                    break;
-                default:
-                    break;
+                consultant.Clients = clientLoader.Load();
+                comboBoxClients.Items.AddRange(consultant.Clients.Keys.ToArray());
             }
+        }
+
+        private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

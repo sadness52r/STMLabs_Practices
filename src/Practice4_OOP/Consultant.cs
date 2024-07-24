@@ -6,24 +6,22 @@ using System.Threading.Tasks;
 
 namespace Practice4_OOP
 {
-    internal class Consultant
+    internal class Consultant : IWorker
     {
-        protected readonly List<Client> clients;
+        protected Dictionary<string, Client> clients;
         protected Client? curClient = null;
+
+        public Dictionary<string, Client> Clients 
+        {
+            get { return clients; }
+            set { clients = value; }
+        }
 
         public Consultant()
         {
-            clients = new List<Client>();
+            clients = new Dictionary<string, Client>();
         }
 
-        public void AddClient(Client client)
-        {
-            clients.Add(client);
-        }
-        //public void RemoveClient(Client client)
-        //{
-        //    clients.Remove(client);
-        //}
         public string GetPassportData()
         {
             if (curClient == null)
