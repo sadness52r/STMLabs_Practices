@@ -5,23 +5,41 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        ILogger logger = LoggerFactory.Create(builder =>
+        ILogger loggerError = LoggerFactory.Create(builder =>
         {
             builder.AddConsole();
             builder.SetMinimumLevel(LogLevel.Error);
-        }).CreateLogger<Calculator<double>>();
-        Calculator<double> calculator = new Calculator<double>(logger);
+        }).CreateLogger<Program>();
+        Calculator<double> calculator = new Calculator<double>();
         while (true)
         {
             Console.WriteLine("Please, enter correct expression in format: {number1} {+|-|*|/} {number2}\nTo exit click ENTER");
-            string expression = Console.ReadLine();
+            string? expression = Console.ReadLine();
             if (expression == String.Empty)
             {
                 break;
             }
             Console.WriteLine("Your result:");
-            double ans = calculator.Calculate(expression);
-            Console.WriteLine(double.IsNaN(ans) ? " " : ans);
+            try
+            {
+                Console.WriteLine(calculator.Calculate(expression));
+            }
+            catch (InvalidInputException e)
+            {
+                loggerError.LogError(e, e.Message);
+            }
+            catch (InvalidCastException e)
+            {
+                loggerError.LogError(e, e.Message);
+            }
+            catch (DivideByZeroException e)
+            {
+                loggerError.LogError(e, e.Message);
+            }
+            catch (InvalidOperationException e)
+            {
+                loggerError.LogError(e, e.Message);
+            }
         }
     }
 }

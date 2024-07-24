@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Practice3_DelegatesEventsException
 {
@@ -16,18 +15,6 @@ namespace Practice3_DelegatesEventsException
     {
         private T? number1, number2;
         private OperationType operationType;
-        private ILogger logger;
-
-        public Calculator() : this(LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Error);
-        }).CreateLogger<Calculator<T>>())
-        { }
-        public Calculator(ILogger logger)
-        {
-            this.logger = logger;
-        }
 
         private double Add(T x, T y) => (double)Convert.ChangeType(x + y, typeof(double));
         private double Subtract(T x, T y) => (double)Convert.ChangeType(x - y, typeof(double));
@@ -36,11 +23,11 @@ namespace Practice3_DelegatesEventsException
 
         private Operation<T> SelectOperation(OperationType _operationType) => _operationType switch
         {
-                OperationType.Add => Add,
-                OperationType.Subtract => Subtract,
-                OperationType.Multiply => Mult,
-                OperationType.Divide => Divide,
-                _ => throw new InvalidOperationException("Enter correct operation!")
+            OperationType.Add => Add,
+            OperationType.Subtract => Subtract,
+            OperationType.Multiply => Mult,
+            OperationType.Divide => Divide,
+            _ => throw new InvalidOperationException("Enter correct operation!")
         };
         private void ParseExpression(string expression)
         {
@@ -56,29 +43,9 @@ namespace Practice3_DelegatesEventsException
 
         public double Calculate(string expression)
         {
-            try
-            {
-                ParseExpression(expression);
-                Operation<T> operation = SelectOperation(operationType);
-                return operation(number1, number2);
-            }
-            catch (InvalidInputException e)
-            {
-                logger.LogError(e, e.Message);
-            }
-            catch (InvalidCastException e)
-            {
-                logger.LogError(e, e.Message);
-            }
-            catch (DivideByZeroException e)
-            {
-                logger.LogError(e, e.Message);
-            }
-            catch (InvalidOperationException e)
-            {
-                logger.LogError(e, e.Message);
-            }
-            return double.NaN;
+            ParseExpression(expression);
+            Operation<T> operation = SelectOperation(operationType);
+            return operation(number1, number2);
         }
     }
 }
