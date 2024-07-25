@@ -43,23 +43,26 @@
             labelClientPatronymicTitle = new Label();
             labelClientSurnameTitle = new Label();
             labelClientNameTitle = new Label();
+            panelAllMain = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBoxJobTitle).BeginInit();
             panelClientInfo.SuspendLayout();
+            panelAllMain.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBoxJobTitle
             // 
-            pictureBoxJobTitle.Location = new Point(30, 16);
+            pictureBoxJobTitle.Location = new Point(35, 16);
             pictureBoxJobTitle.Margin = new Padding(3, 2, 3, 2);
             pictureBoxJobTitle.Name = "pictureBoxJobTitle";
-            pictureBoxJobTitle.Size = new Size(150, 88);
+            pictureBoxJobTitle.Size = new Size(113, 107);
+            pictureBoxJobTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxJobTitle.TabIndex = 0;
             pictureBoxJobTitle.TabStop = false;
             // 
             // labelJobTitle
             // 
             labelJobTitle.AutoSize = true;
-            labelJobTitle.Location = new Point(76, 114);
+            labelJobTitle.Location = new Point(64, 136);
             labelJobTitle.Name = "labelJobTitle";
             labelJobTitle.Size = new Size(38, 15);
             labelJobTitle.TabIndex = 1;
@@ -67,10 +70,11 @@
             // 
             // comboBoxClients
             // 
+            comboBoxClients.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboBoxClients.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxClients.FormattingEnabled = true;
             comboBoxClients.ImeMode = ImeMode.NoControl;
-            comboBoxClients.Location = new Point(1434, 46);
+            comboBoxClients.Location = new Point(1433, 16);
             comboBoxClients.Name = "comboBoxClients";
             comboBoxClients.Size = new Size(239, 23);
             comboBoxClients.TabIndex = 4;
@@ -89,16 +93,17 @@
             panelClientInfo.Controls.Add(labelClientPatronymicTitle);
             panelClientInfo.Controls.Add(labelClientSurnameTitle);
             panelClientInfo.Controls.Add(labelClientNameTitle);
-            panelClientInfo.Location = new Point(4, 489);
+            panelClientInfo.Dock = DockStyle.Bottom;
+            panelClientInfo.Location = new Point(0, 627);
             panelClientInfo.Margin = new Padding(3, 2, 3, 2);
             panelClientInfo.Name = "panelClientInfo";
-            panelClientInfo.Size = new Size(1676, 304);
+            panelClientInfo.Size = new Size(1684, 304);
             panelClientInfo.TabIndex = 5;
             // 
             // buttonChangePhone
             // 
             buttonChangePhone.Enabled = false;
-            buttonChangePhone.Location = new Point(7, 124);
+            buttonChangePhone.Location = new Point(12, 253);
             buttonChangePhone.Name = "buttonChangePhone";
             buttonChangePhone.Size = new Size(102, 48);
             buttonChangePhone.TabIndex = 10;
@@ -109,7 +114,7 @@
             // labelClientPassport
             // 
             labelClientPassport.AutoSize = true;
-            labelClientPassport.Location = new Point(102, 106);
+            labelClientPassport.Location = new Point(92, 226);
             labelClientPassport.Name = "labelClientPassport";
             labelClientPassport.Size = new Size(0, 15);
             labelClientPassport.TabIndex = 9;
@@ -117,7 +122,7 @@
             // labelClientPhone
             // 
             labelClientPhone.AutoSize = true;
-            labelClientPhone.Location = new Point(102, 82);
+            labelClientPhone.Location = new Point(92, 202);
             labelClientPhone.Name = "labelClientPhone";
             labelClientPhone.Size = new Size(0, 15);
             labelClientPhone.TabIndex = 8;
@@ -125,7 +130,7 @@
             // labelClientPatronymic
             // 
             labelClientPatronymic.AutoSize = true;
-            labelClientPatronymic.Location = new Point(102, 59);
+            labelClientPatronymic.Location = new Point(92, 179);
             labelClientPatronymic.Name = "labelClientPatronymic";
             labelClientPatronymic.Size = new Size(0, 15);
             labelClientPatronymic.TabIndex = 7;
@@ -133,7 +138,7 @@
             // labelClientName
             // 
             labelClientName.AutoSize = true;
-            labelClientName.Location = new Point(102, 36);
+            labelClientName.Location = new Point(92, 156);
             labelClientName.Name = "labelClientName";
             labelClientName.Size = new Size(0, 15);
             labelClientName.TabIndex = 6;
@@ -141,7 +146,7 @@
             // labelClientSurname
             // 
             labelClientSurname.AutoSize = true;
-            labelClientSurname.Location = new Point(102, 13);
+            labelClientSurname.Location = new Point(92, 133);
             labelClientSurname.Name = "labelClientSurname";
             labelClientSurname.Size = new Size(0, 15);
             labelClientSurname.TabIndex = 5;
@@ -149,7 +154,7 @@
             // labelPassportTitle
             // 
             labelPassportTitle.AutoSize = true;
-            labelPassportTitle.Location = new Point(7, 106);
+            labelPassportTitle.Location = new Point(12, 226);
             labelPassportTitle.Name = "labelPassportTitle";
             labelPassportTitle.Size = new Size(55, 15);
             labelPassportTitle.TabIndex = 4;
@@ -158,7 +163,7 @@
             // labelPhoneTitle
             // 
             labelPhoneTitle.AutoSize = true;
-            labelPhoneTitle.Location = new Point(7, 82);
+            labelPhoneTitle.Location = new Point(12, 202);
             labelPhoneTitle.Name = "labelPhoneTitle";
             labelPhoneTitle.Size = new Size(44, 15);
             labelPhoneTitle.TabIndex = 3;
@@ -167,7 +172,7 @@
             // labelClientPatronymicTitle
             // 
             labelClientPatronymicTitle.AutoSize = true;
-            labelClientPatronymicTitle.Location = new Point(7, 59);
+            labelClientPatronymicTitle.Location = new Point(12, 179);
             labelClientPatronymicTitle.Name = "labelClientPatronymicTitle";
             labelClientPatronymicTitle.Size = new Size(71, 15);
             labelClientPatronymicTitle.TabIndex = 2;
@@ -176,7 +181,7 @@
             // labelClientSurnameTitle
             // 
             labelClientSurnameTitle.AutoSize = true;
-            labelClientSurnameTitle.Location = new Point(7, 13);
+            labelClientSurnameTitle.Location = new Point(12, 133);
             labelClientSurnameTitle.Name = "labelClientSurnameTitle";
             labelClientSurnameTitle.Size = new Size(57, 15);
             labelClientSurnameTitle.TabIndex = 1;
@@ -185,21 +190,31 @@
             // labelClientNameTitle
             // 
             labelClientNameTitle.AutoSize = true;
-            labelClientNameTitle.Location = new Point(7, 36);
+            labelClientNameTitle.Location = new Point(12, 156);
             labelClientNameTitle.Name = "labelClientNameTitle";
             labelClientNameTitle.Size = new Size(42, 15);
             labelClientNameTitle.TabIndex = 0;
             labelClientNameTitle.Text = "Name:";
+            // 
+            // panelAllMain
+            // 
+            panelAllMain.BackColor = Color.Transparent;
+            panelAllMain.Controls.Add(pictureBoxJobTitle);
+            panelAllMain.Controls.Add(labelJobTitle);
+            panelAllMain.Controls.Add(comboBoxClients);
+            panelAllMain.Controls.Add(panelClientInfo);
+            panelAllMain.Dock = DockStyle.Fill;
+            panelAllMain.Location = new Point(0, 0);
+            panelAllMain.Name = "panelAllMain";
+            panelAllMain.Size = new Size(1684, 931);
+            panelAllMain.TabIndex = 6;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1684, 931);
-            Controls.Add(panelClientInfo);
-            Controls.Add(comboBoxClients);
-            Controls.Add(labelJobTitle);
-            Controls.Add(pictureBoxJobTitle);
+            Controls.Add(panelAllMain);
             Name = "FormMain";
             Text = "FormMain";
             WindowState = FormWindowState.Maximized;
@@ -207,8 +222,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxJobTitle).EndInit();
             panelClientInfo.ResumeLayout(false);
             panelClientInfo.PerformLayout();
+            panelAllMain.ResumeLayout(false);
+            panelAllMain.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -229,5 +245,6 @@
         private Label labelClientName;
         private Label labelClientSurname;
         private Button buttonChangePhone;
+        private Panel panelAllMain;
     }
 }

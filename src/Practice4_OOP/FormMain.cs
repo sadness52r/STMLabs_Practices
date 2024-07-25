@@ -4,12 +4,9 @@ namespace Practice4_OOP
 {
     public partial class FormMain : Form
     {
-        private const int OFFSETX = 20;
-        private const int OFFSETY = 5;
-        private const int OFFSETY_PANEL = 200;
-        private string jobTitle;
-        private Worker? worker;
-        private ILogger logger;
+        private readonly string jobTitle;
+        private readonly Worker? worker;
+        private readonly ILogger logger;
 
         public FormMain(string jobTitle)
         {
@@ -32,8 +29,7 @@ namespace Practice4_OOP
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            comboBoxClients.Location = new Point(this.Width - comboBoxClients.Width - OFFSETX, comboBoxClients.Height + OFFSETY);
-            panelClientInfo.Location = new Point(0, this.Height - comboBoxClients.Height - OFFSETY_PANEL);
+            pictureBoxJobTitle.Image = worker.Image;
             this.Text = jobTitle;
             this.labelJobTitle.Text = jobTitle;
             ClientsLoader clientLoader = new ClientsLoader("clients.txt");

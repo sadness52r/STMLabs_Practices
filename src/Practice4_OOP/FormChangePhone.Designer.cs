@@ -47,9 +47,9 @@
             // buttonAcceptPhone
             // 
             buttonAcceptPhone.Enabled = false;
-            buttonAcceptPhone.Location = new Point(342, 233);
+            buttonAcceptPhone.Location = new Point(360, 200);
             buttonAcceptPhone.Name = "buttonAcceptPhone";
-            buttonAcceptPhone.Size = new Size(97, 40);
+            buttonAcceptPhone.Size = new Size(65, 33);
             buttonAcceptPhone.TabIndex = 2;
             buttonAcceptPhone.Text = "Accept";
             buttonAcceptPhone.UseVisualStyleBackColor = true;
@@ -58,10 +58,10 @@
             // maskedTextBoxNewPhone
             // 
             maskedTextBoxNewPhone.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            maskedTextBoxNewPhone.Location = new Point(351, 169);
+            maskedTextBoxNewPhone.Location = new Point(342, 159);
             maskedTextBoxNewPhone.Mask = "00000000000";
             maskedTextBoxNewPhone.Name = "maskedTextBoxNewPhone";
-            maskedTextBoxNewPhone.Size = new Size(79, 23);
+            maskedTextBoxNewPhone.Size = new Size(101, 23);
             maskedTextBoxNewPhone.TabIndex = 3;
             maskedTextBoxNewPhone.TextAlign = HorizontalAlignment.Center;
             maskedTextBoxNewPhone.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;

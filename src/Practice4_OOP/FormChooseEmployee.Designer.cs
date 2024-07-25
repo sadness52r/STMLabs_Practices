@@ -30,6 +30,8 @@
         {
             comboBoxChooseEmployee = new ComboBox();
             buttonOpenMain = new Button();
+            pictureBoxJobTitle = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxJobTitle).BeginInit();
             SuspendLayout();
             // 
             // comboBoxChooseEmployee
@@ -55,17 +57,28 @@
             buttonOpenMain.UseVisualStyleBackColor = true;
             buttonOpenMain.Click += buttonOpenMain_Click;
             // 
+            // pictureBoxJobTitle
+            // 
+            pictureBoxJobTitle.Location = new Point(340, 149);
+            pictureBoxJobTitle.Name = "pictureBoxJobTitle";
+            pictureBoxJobTitle.Size = new Size(118, 115);
+            pictureBoxJobTitle.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxJobTitle.TabIndex = 2;
+            pictureBoxJobTitle.TabStop = false;
+            // 
             // FormChooseEmployee
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBoxJobTitle);
             Controls.Add(buttonOpenMain);
             Controls.Add(comboBoxChooseEmployee);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "FormChooseEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Choose Employee";
+            ((System.ComponentModel.ISupportInitialize)pictureBoxJobTitle).EndInit();
             ResumeLayout(false);
         }
 
@@ -73,5 +86,6 @@
 
         private ComboBox comboBoxChooseEmployee;
         private Button buttonOpenMain;
+        private PictureBox pictureBoxJobTitle;
     }
 }
