@@ -42,9 +42,11 @@
             comboBoxChooseEmployee.Name = "comboBoxChooseEmployee";
             comboBoxChooseEmployee.Size = new Size(239, 23);
             comboBoxChooseEmployee.TabIndex = 0;
+            comboBoxChooseEmployee.SelectedIndexChanged += comboBoxChooseEmployee_SelectedIndexChanged;
             // 
             // buttonOpenMain
             // 
+            buttonOpenMain.Enabled = false;
             buttonOpenMain.Location = new Point(340, 372);
             buttonOpenMain.Name = "buttonOpenMain";
             buttonOpenMain.Size = new Size(118, 42);
@@ -64,7 +66,6 @@
             Name = "FormChooseEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Choose Employee";
-            Load += FormChooseEmployee_Load;
             ResumeLayout(false);
         }
 

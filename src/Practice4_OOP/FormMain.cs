@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Practice4_OOP
 {
     public partial class FormMain : Form
     {
+        private const int OFFSETX = 20;
+        private const int OFFSETY = 5;
+        private const int OFFSETY_PANEL = 200;
         private string jobTitle;
-        private Consultant? consultant;
+        private Worker? worker;
+        private ILogger logger;
 
         public FormMain(string jobTitle)
         {
@@ -21,29 +17,57 @@ namespace Practice4_OOP
             switch (jobTitle)
             {
                 case "Consultant":
-                    consultant = new Consultant();
+                    worker = new Consultant();
                     break;
                 default:
                     break;
             }
+            logger = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.SetMinimumLevel(LogLevel.Error);
+            }).CreateLogger<FormMain>();
             InitializeComponent();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            comboBoxClients.Location = new Point(this.Width - comboBoxClients.Width - OFFSETX, comboBoxClients.Height + OFFSETY);
+            panelClientInfo.Location = new Point(0, this.Height - comboBoxClients.Height - OFFSETY_PANEL);
             this.Text = jobTitle;
             this.labelJobTitle.Text = jobTitle;
             ClientsLoader clientLoader = new ClientsLoader("clients.txt");
-            if (consultant != null)
+            try
             {
-                consultant.Clients = clientLoader.Load();
-                comboBoxClients.Items.AddRange(consultant.Clients.Keys.ToArray());
+                worker.Clients = clientLoader.Load();
+                comboBoxClients.Items.AddRange(worker.Clients.Keys.ToArray());
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.LogError(ex, ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
-
         private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            worker.CurClient = worker.Clients[comboBoxClients.SelectedItem.ToString()];
+            labelClientSurname.Text = worker.CurClient.Surname;
+            labelClientName.Text = worker.CurClient.Name;
+            labelClientPatronymic.Text = worker.CurClient.Patronymic;
+            labelClientPhone.Text = worker.CurClient.PhoneNumber;
+            labelClientPassport.Text = worker.GetPassportData();
+            buttonChangePhone.Enabled = true;
+        }
+        private void buttonChangePhone_Click(object sender, EventArgs e)
+        {
+            FormChangePhone formChangePhone = new FormChangePhone(worker, worker.CurClient);
+            formChangePhone.ShowDialog();
+            if (formChangePhone.IsChangedNumber)
+            {
+                labelClientPhone.Text = worker.CurClient.PhoneNumber;
+                comboBoxClients.Items.Remove(formChangePhone.OldPhoneNumber);
+                comboBoxClients.Items.Add(worker.CurClient.PhoneNumber);
+            }
         }
     }
 }

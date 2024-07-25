@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Practice4_OOP
 {
     public partial class FormChooseEmployee : Form
@@ -9,21 +11,16 @@ namespace Practice4_OOP
             InitializeComponent();
         }
 
-        private void FormChooseEmployee_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonOpenMain_Click(object sender, EventArgs e)
         {
-            if (comboBoxChooseEmployee.Text == string.Empty)
-            {
-                //ошибка
-            }
             formMain = new FormMain(comboBoxChooseEmployee.Text);
             this.Hide();
             formMain.Closed += (s, args) => this.Close();
             formMain.Show();
+        }
+        private void comboBoxChooseEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonOpenMain.Enabled = true;
         }
     }
 }

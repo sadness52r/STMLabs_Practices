@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice4_OOP
+﻿namespace Practice4_OOP
 {
     internal class ClientsLoader
     {
@@ -24,15 +18,18 @@ namespace Practice4_OOP
                 {
                     string[] line = sr.ReadLine().Split();
                     int ind = 0;
-                    string surname = line[ind], name = line[++ind], phoneNumber = "", patronymic = "",
-                        passportSeries, passportNumber;
+                    string surname = line[ind], name = line[++ind], phoneNumber = string.Empty, patronymic = string.Empty,
+                        passportSeries = string.Empty, passportNumber = string.Empty;
                     if (!line[++ind].StartsWith("Phone:"))
                     {
                         patronymic = line[ind++];
                     }
                     phoneNumber = line[ind++].Split(':')[1];
-                    passportSeries = line[ind++];
-                    passportNumber = line[ind++];
+                    if (line.Length == 5 || line.Length == 6)
+                    {
+                        passportSeries = line[ind++];
+                        passportNumber = line[ind++];
+                    }
                     clients.Add(phoneNumber, new Client(surname, name, patronymic, phoneNumber, passportSeries, passportNumber));
                 }
             }
