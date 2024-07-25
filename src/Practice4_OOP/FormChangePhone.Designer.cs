@@ -37,7 +37,7 @@
             // 
             labelChangePhoneTitle.AutoSize = true;
             labelChangePhoneTitle.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
-            labelChangePhoneTitle.Location = new Point(321, 98);
+            labelChangePhoneTitle.Location = new Point(322, 96);
             labelChangePhoneTitle.Name = "labelChangePhoneTitle";
             labelChangePhoneTitle.Size = new Size(150, 30);
             labelChangePhoneTitle.TabIndex = 1;
