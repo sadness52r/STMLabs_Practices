@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            ILogger loggerTask3 = LoggerFactory.Create(builder =>
+            ILogger loggerError = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();
                 builder.SetMinimumLevel(LogLevel.Error);
@@ -36,15 +36,22 @@
                 }
                 catch (InappropriateParamsNumberException e)
                 {
-                    loggerTask3.LogError(e, e.Message);
+                    loggerError.LogError(e, e.Message);
                     continue;
                 }
                 catch (FormatException e)
                 {
-                    loggerTask3.LogError(e, e.Message);
+                    loggerError.LogError(e, e.Message);
                     continue;
                 }
             }
+          
+            SourceTask4 sourceTask4_1 = new SourceTask4("Source1");
+            SourceTask4 sourceTask4_2 = new SourceTask4("Source2");
+            HandlerTask4 handlerTask4 = new HandlerTask4();
+            sourceTask4_1.Notify += handlerTask4.GetArgValue;
+            sourceTask4_2.Notify += handlerTask4.GetArgValue;
+            sourceTask4_1.GenerateEvent(); sourceTask4_2.GenerateEvent();
         }
     }
 }
