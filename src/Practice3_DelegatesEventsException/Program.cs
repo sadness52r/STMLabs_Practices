@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Practice3_DelegatesEventsException;
+using Practice3_DelegatesEventsExceptions;
 
 internal class Program
 {
@@ -39,6 +40,20 @@ internal class Program
             catch (InvalidOperationException e)
             {
                 loggerError.LogError(e, e.Message);
+            }
+        }
+
+        DaysOfWeekTask2 task = new DaysOfWeekTask2();
+        while (true)
+        {
+            Console.WriteLine("Click ENTER to call a delegate!\nExit: enter something else");
+            if (Console.ReadLine() == String.Empty)
+            {
+                Console.WriteLine(task.CallDelegate());
+            }
+            else
+            {
+                break;
             }
         }
     }
