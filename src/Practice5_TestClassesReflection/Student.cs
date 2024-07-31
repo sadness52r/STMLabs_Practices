@@ -1,4 +1,5 @@
 ﻿using Practice5_MySerializer;
+using System.Text;
 
 namespace Practice5_TestClassesReflection
 {
@@ -36,5 +37,15 @@ namespace Practice5_TestClassesReflection
             this.marks = marks;
         }
 
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append($"Student name: {name}\n\tAge: {age}\n\tMarks:\n\t\t");
+            foreach (var item in marks)
+            {
+                stringBuilder.Append($"{item.Key} - {item.Value}\n\t\t");
+            }
+            return stringBuilder.ToString();
+        }
     }
 }

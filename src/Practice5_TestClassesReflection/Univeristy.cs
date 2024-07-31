@@ -1,4 +1,5 @@
 ﻿using Practice5_MySerializer;
+using System.Text;
 
 namespace Practice5_TestClassesReflection
 {
@@ -34,6 +35,18 @@ namespace Practice5_TestClassesReflection
             this.title = title;
             this.students = students;
             this.bestStudent = bestStudent;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append($"University title: {title}\nStudents:\n\t");
+            foreach (var student in students)
+            {
+                stringBuilder.Append(student.ToString() + "\n\t");
+            }
+            stringBuilder.Append($"\nBest student:\n\t{bestStudent.ToString()}");
+            return stringBuilder.ToString();
         }
     }
 }
