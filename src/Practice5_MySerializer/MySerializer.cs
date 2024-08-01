@@ -1,21 +1,12 @@
 ﻿using System.Collections;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace Practice5_MySerializer
 {
-    public partial class MySerializer
+    public partial class MyJsonConverter
     {
-        public MySerializer(Type type)
-        {
-            if (!type.IsDefined(typeof(SerializableAttribute), false))
-            {
-                throw new SerializationException("The type has not necessary serializable attribute!");
-            }
-        }
-
-        private string SerializeArray(Array array)
+        private static string SerializeArray(Array array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
@@ -30,7 +21,7 @@ namespace Practice5_MySerializer
             sb.Append("]");
             return sb.ToString();
         }
-        private string SerializeIEnumerable(IEnumerable iEnumerable)
+        private static string SerializeIEnumerable(IEnumerable iEnumerable)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
@@ -47,7 +38,7 @@ namespace Practice5_MySerializer
             sb.Append("]");
             return sb.ToString();
         }
-        private string SerializeIDictionary(IDictionary dictionary)
+        private static string SerializeIDictionary(IDictionary dictionary)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("{");
@@ -65,7 +56,7 @@ namespace Practice5_MySerializer
             sb.Append("}");
             return sb.ToString();
         }
-        private string SerializeObject(object obj)
+        private static string SerializeObject(object obj)
         {
             StringBuilder sb = new StringBuilder();
             var properties = obj.GetType().GetProperties().Where(p => p.GetCustomAttribute<IgnoreAttribute>() == null).ToArray();
@@ -87,7 +78,7 @@ namespace Practice5_MySerializer
             return sb.ToString();
         }
 
-        public string Serialize(object? obj)
+        public static string Serialize(object? obj)
         {
             if (obj == null)
             {

@@ -3,7 +3,6 @@ using System.Text;
 
 namespace Practice5_TestClassesReflection
 {
-    [SerializableAttribute]
     internal class University
     {
         private string title;

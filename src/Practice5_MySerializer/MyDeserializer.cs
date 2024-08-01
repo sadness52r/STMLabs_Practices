@@ -4,9 +4,9 @@ using System.Text.Json;
 
 namespace Practice5_MySerializer
 {
-    public partial class MySerializer
+    public partial class MyJsonConverter
     {
-        private object? DeserializeObject(JsonElement jsonElement, Type? type, Type[]? innerTypes = null)
+        private static object? DeserializeObject(JsonElement jsonElement, Type? type, Type[]? innerTypes = null)
         {
             if (jsonElement.ValueKind == JsonValueKind.Null)
             {
@@ -20,6 +20,10 @@ namespace Practice5_MySerializer
             {
                 return val;
             }
+            if (type.IsEnum)
+            {
+                return Enum.Parse(type, jsonElement.GetString());
+            }
             if (typeof(IDictionary).IsAssignableFrom(type))
             {
                 return DeserializeIDictionary(jsonElement, type, innerTypes);
@@ -30,7 +34,7 @@ namespace Practice5_MySerializer
             }
             return DeserializeConcreteObject(jsonElement, type);
         }
-        private object? DeserializeIDictionary(JsonElement jsonElement, Type? type, Type[]? innerTypes)
+        private static object? DeserializeIDictionary(JsonElement jsonElement, Type? type, Type[]? innerTypes)
         {
             Type dicType = typeof(Dictionary<,>).MakeGenericType(innerTypes);
             var dict = (IDictionary?)Activator.CreateInstance(dicType);
@@ -42,7 +46,7 @@ namespace Practice5_MySerializer
             }
             return dict;
         }
-        private object? DeserializeIEnumerable(JsonElement jsonElement, Type? type, Type innerType)
+        private static object? DeserializeIEnumerable(JsonElement jsonElement, Type? type, Type innerType)
         {
             Type listType = typeof(List<>).MakeGenericType(innerType);
             var array = (IList?)Activator.CreateInstance(listType);
@@ -52,7 +56,7 @@ namespace Practice5_MySerializer
             }
             return array;
         }
-        private object? DeserializeConcreteObject(JsonElement jsonElement, Type type)
+        private static object? DeserializeConcreteObject(JsonElement jsonElement, Type type)
         {
             object? obj = Activator.CreateInstance(type);
             var props = type.GetProperties().Where(p => p.GetCustomAttribute<IgnoreAttribute>() == null).ToArray();
@@ -64,7 +68,7 @@ namespace Practice5_MySerializer
             }
             return obj;
         }
-        private bool CheckPrimitiveType(JsonElement jsonElement, Type? type, out object? val)
+        private static bool CheckPrimitiveType(JsonElement jsonElement, Type? type, out object? val)
         {
             if (type == typeof(int))
             {
@@ -94,7 +98,7 @@ namespace Practice5_MySerializer
             return true;
         }
 
-        public object? Deserialize<T>(string json)
+        public static object? Deserialize<T>(string json)
         {
             using (JsonDocument jsonDocument = JsonDocument.Parse(json))
             {
