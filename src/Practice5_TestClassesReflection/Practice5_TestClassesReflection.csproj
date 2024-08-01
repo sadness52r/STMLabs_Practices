@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Practice5_MySerializer">
-      <HintPath>bin\Debug\net8.0\Practice5_MySerializer.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Practice5_MySerializer\Practice5_MySerializer.csproj" />
   </ItemGroup>
 
 </Project>
