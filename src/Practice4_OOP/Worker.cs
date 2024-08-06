@@ -2,6 +2,9 @@
 {
     internal abstract class Worker
     {
+        public const string CONSULTANT_PIC = "Materials/consultant.jpg";
+        public const string MANAGER_PIC = "Materials/manager.jpg";
+
         protected Dictionary<string, Client>? clients;
         protected Client? curClient = null;
         protected Image? image;

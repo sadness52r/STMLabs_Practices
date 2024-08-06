@@ -16,6 +16,9 @@ namespace Practice4_OOP
                 case "Consultant":
                     worker = new Consultant();
                     break;
+                case "Manager":
+                    worker = new Manager();
+                    break;
                 default:
                     break;
             }
@@ -53,6 +56,13 @@ namespace Practice4_OOP
             labelClientPhone.Text = worker.CurClient.PhoneNumber;
             labelClientPassport.Text = worker.GetPassportData();
             buttonChangePhone.Enabled = true;
+            if (worker is Manager)
+            {
+                buttonChangeName.Enabled = true;
+                buttonChangeSurname.Enabled = true;
+                buttonChangePatronymic.Enabled = true;
+                buttonChangePassport.Enabled = true;
+            }
         }
         private void buttonChangePhone_Click(object sender, EventArgs e)
         {
@@ -64,6 +74,30 @@ namespace Practice4_OOP
                 comboBoxClients.Items.Remove(formChangePhone.OldPhoneNumber);
                 comboBoxClients.Items.Add(worker.CurClient.PhoneNumber);
             }
+        }
+        private void buttonChangeSurname_Click(object sender, EventArgs e)
+        {
+            FormChangeConcreteName formChangeSurname = new FormChangeConcreteName(worker, worker.CurClient, FullnameType.SURNAME);
+            formChangeSurname.ShowDialog();
+            labelClientSurname.Text = worker.CurClient.Surname;
+        }
+        private void buttonChangeName_Click(object sender, EventArgs e)
+        {
+            FormChangeConcreteName formChangeName = new FormChangeConcreteName(worker, worker.CurClient, FullnameType.NAME);
+            formChangeName.ShowDialog();
+            labelClientName.Text = worker.CurClient.Name;
+        }
+        private void buttonChangePatronymic_Click(object sender, EventArgs e)
+        {
+            FormChangeConcreteName formChangePatronymic = new FormChangeConcreteName(worker, worker.CurClient, FullnameType.PATRONYMIC);
+            formChangePatronymic.ShowDialog();
+            labelClientPatronymic.Text = worker.CurClient.Patronymic;
+        }
+        private void buttonChangePassport_Click(object sender, EventArgs e)
+        {
+            FormChangePassport formChangePassport = new FormChangePassport(worker, worker.CurClient);
+            formChangePassport.ShowDialog();
+            labelClientPassport.Text = worker.CurClient.PassportSeries + " " + worker.CurClient.PassportNumber;
         }
     }
 }

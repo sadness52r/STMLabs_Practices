@@ -27,7 +27,10 @@ namespace Practice4_OOP
                 switch (comboBoxChooseEmployee.Text)
                 {
                     case "Consultant":
-                        pictureBoxJobTitle.Image = Image.FromFile("Materials/consultant.jpg");
+                        pictureBoxJobTitle.Image = Image.FromFile(Worker.CONSULTANT_PIC);
+                        break;
+                    case "Manager":
+                        pictureBoxJobTitle.Image = Image.FromFile(Worker.MANAGER_PIC);
                         break;
                     default:
                         break;
