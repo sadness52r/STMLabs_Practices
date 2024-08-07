@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Practice6_LINQ
 {
@@ -28,6 +24,22 @@ namespace Practice6_LINQ
                 Console.WriteLine($"\t{item}");
             }
             Console.WriteLine($"2. Number of customers without orders:\n\t{GetCustomersNumberWithoutOrders()}");
+            Console.WriteLine($"3. Customers info:\n{GetCustomersInfo()}");
+            Console.WriteLine($"4. Customers with more than 2 orders (ordered by name):");
+            var query4 = GetCustomersWithMoreThan2OrdersOrdered();
+            foreach (var item in query4)
+            {
+                Console.WriteLine($"\t{item}");
+            }
+            Console.WriteLine($"5. Customers with orders grouped by cities:\n{GetCustomersWithOrdersGroupByCities()}");
+            Console.WriteLine($"6. Customers who has less orders than average in the city:");
+            var query6 = GetCustomersWithOrdersLessThanAverageInCity();
+            foreach (var item in query6)
+            {
+                Console.WriteLine($"\t{item.Name}");
+            }
+            Console.WriteLine($"7. City with the most spends:\n\t{GetCityWithTheMostSpends().Name}");
+            Console.WriteLine($"8. Three customers with the cheapes orders:\n{GetThreeCustomersWithoutOrWithCheapestOrders()}");
         }
 
         private IEnumerable<string?> GetCustomersFromLA() =>
@@ -36,15 +48,89 @@ namespace Practice6_LINQ
         {
             var customersWithOrders = orders.Select(order => order.CustomerId);
             var allCustomersId = customers.Select(customer => customer.Id);
-            return allCustomersId.Count() - customersWithOrders.Count();
+            return allCustomersId.Except(customersWithOrders).Count();
         }
-        private void GetCustomersInfo()
+        private string? GetCustomersInfo()
         {
-
+            var customersInfo = customers.Join(cities, customer => customer.CityId, city => city.Id, (customer, city) => new
+            {
+                CustomerName = customer.Name,
+                CityName = city.Name,
+                CityCode = city.CityCode,
+                OrdersNumber = orders.Count(o => o.CustomerId == customer.Id),
+                LastOrderDate = orders.Where(o => o.CustomerId == customer.Id).Select(o => o.Date).DefaultIfEmpty().Max()
+            });
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in customersInfo)
+            {
+                stringBuilder.AppendLine($"\tName: {item.CustomerName}, City: {item.CityName}, City code: {item.CityCode}, " +
+                    $"Orders number: {item.OrdersNumber}, Last order date: {item.LastOrderDate}");
+            }
+            return stringBuilder.ToString();
         }
-        //private IEnumerable<string?> GetCustomersWithMoreThan2OrdersOrdered()
-        //{
-
-        //}
+        private IEnumerable<string?> GetCustomersWithMoreThan2OrdersOrdered() =>
+            customers.Where(c => orders.Count(o => o.CustomerId == c.Id) > 2).OrderBy(c => c.Name).Select(c => c.Name);
+        private string? GetCustomersWithOrdersGroupByCities()
+        {
+            var customersWithOrdersGroupCity = customers.Join(orders, c => c.Id, o => o.CustomerId, (c, o) => new
+            {
+                Customer = c,
+                Order = o,
+            }).GroupBy(customer => customer.Customer.CityId).Join(cities, p => p.Key, city => city.Id, (p, city) => new
+            {
+                CityName = city.Name,
+                Customers = p.Select(cust => new
+                {
+                    cust.Customer.Name,
+                    OrdersNumber = orders.Count(o => o.CustomerId == cust.Customer.Id)
+                }).Distinct()
+            });
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in customersWithOrdersGroupCity)
+            {
+                stringBuilder.AppendLine($"\t{item.CityName}:");
+                foreach (var customer in item.Customers)
+                {
+                    stringBuilder.AppendLine($"\t\tName: {customer.Name} - Orders: {customer.OrdersNumber}");
+                }
+            }
+            return stringBuilder.ToString();
+        }
+        private IEnumerable<Customer?> GetCustomersWithOrdersLessThanAverageInCity() =>
+            customers.Select(c => new
+            {
+                Customer = c,
+                AverageOrders = customers.Where(cust => cust.CityId == c.CityId).Average(cust => orders.Count(o => o.CustomerId == cust.Id))
+            }).Where(c => orders.Count(o => o.CustomerId == c.Customer.Id) < c.AverageOrders).Select(c => c.Customer);
+        private City GetCityWithTheMostSpends()
+        {
+            var cityToTotalSpend = orders.GroupBy(o => o.CustomerId).Join(customers, o => o.Key, customer => customer.Id, (o, customer) => new
+            {
+                o,
+                customer
+            }).Join(cities, line => line.customer.CityId, city => city.Id, (line, city) => new
+            {
+                City = city,
+                TotalSpend = line.o.Sum(o => o.Price)
+            });
+            return cityToTotalSpend.Where(l => l.TotalSpend == cityToTotalSpend.Max(row => row.TotalSpend)).First().City;
+        }
+        private string? GetThreeCustomersWithoutOrWithCheapestOrders()
+        {
+            var lowestSpendingCustomers = customers.Select(c => new
+            {
+                CustomerName = c.Name,
+                CityName = cities.FirstOrDefault(city => city.Id == c.CityId)?.Name,
+                OrdersNumber = orders.Count(o => o.CustomerId == c.Id),
+                TotalSpend = orders.Where(o => o.CustomerId == c.Id).Sum(o => o.Price)
+            }).OrderBy(x => x.TotalSpend).Take(3);
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in lowestSpendingCustomers)
+            {
+                stringBuilder.AppendLine($"\tName: {item.CustomerName}, City: {item.CityName}, Orders number: {item.OrdersNumber}, " +
+                    $"Total spend: {item.TotalSpend}");
+            }
+            return stringBuilder.ToString();
+        }
     }
 }
