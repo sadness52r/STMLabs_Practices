@@ -1,7 +1,10 @@
-﻿internal class Program
+﻿using Practice6_LINQ;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Benchmark benchmark = new Benchmark();
+        benchmark.Run(); 
     }
 }
