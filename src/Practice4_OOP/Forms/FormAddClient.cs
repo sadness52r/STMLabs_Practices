@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Practice4_OOP
+﻿namespace Practice4_OOP
 {
     internal partial class FormAddClient : Form
     {
@@ -30,8 +20,8 @@ namespace Practice4_OOP
             }
             else
             {
-                worker.Clients.Add(maskedTextBoxNewClientPhone.Text, new Client(maskedTextBoxNewClientSurname.Text, maskedTextBoxNewClientName.Text, 
-                    maskedTextBoxNewClientPatronymic.Text, maskedTextBoxNewClientPhone.Text, 
+                worker.Clients.Add(maskedTextBoxNewClientPhone.Text, new Client(maskedTextBoxNewClientSurname.Text, maskedTextBoxNewClientName.Text,
+                    maskedTextBoxNewClientPatronymic.Text, maskedTextBoxNewClientPhone.Text,
                     maskedTextBoxNewClientPassportSeries.Text, maskedTextBoxNewClientPassportNumber.Text));
                 comboBox.Items.Add(maskedTextBoxNewClientPhone.Text);
                 MessageBox.Show("Client was successfully added!");
@@ -39,9 +29,9 @@ namespace Practice4_OOP
         }
         private void timerAcceptClientToAdd_Tick(object sender, EventArgs e)
         {
-            if (maskedTextBoxNewClientName.Text.Length != 0 && maskedTextBoxNewClientSurname.Text.Length != 0 && maskedTextBoxNewClientPhone.Text.Length != 0 
-                && (maskedTextBoxNewClientPassportSeries.Text.Length == 0 && maskedTextBoxNewClientPassportNumber.Text.Length == 0 
-                || maskedTextBoxNewClientPassportSeries.Text.Length == maskedTextBoxNewClientPassportSeries.Mask.Length 
+            if (maskedTextBoxNewClientName.Text.Length != 0 && maskedTextBoxNewClientSurname.Text.Length != 0 && maskedTextBoxNewClientPhone.Text.Length != 0
+                && (maskedTextBoxNewClientPassportSeries.Text.Length == 0 && maskedTextBoxNewClientPassportNumber.Text.Length == 0
+                || maskedTextBoxNewClientPassportSeries.Text.Length == maskedTextBoxNewClientPassportSeries.Mask.Length
                 && maskedTextBoxNewClientPassportNumber.Text.Length == maskedTextBoxNewClientPassportNumber.Mask.Length))
             {
                 buttonAddClient.Enabled = true;
