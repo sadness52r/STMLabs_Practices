@@ -3,19 +3,19 @@
     internal class Order
     {
         private readonly int id;
-        private readonly int customerId;
+        private readonly Customer customer;
         private readonly decimal price;
         private readonly DateTime? date;
 
         public int Id => id;
-        public int CustomerId => customerId;
+        public Customer Customer => customer;
         public decimal Price => price;
         public DateTime? Date => date;
 
-        public Order(int id, int customerId, decimal price, DateTime? date)
+        public Order(int id, Customer customer, decimal price, DateTime? date)
         {
             this.id = id;
-            this.customerId = customerId;
+            this.customer = customer;
             this.price = price;
             this.date = date;
         }

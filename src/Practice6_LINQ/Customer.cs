@@ -4,17 +4,17 @@
     {
         private readonly int id;
         private readonly string? name;
-        private readonly int cityId;
+        private readonly City city;
 
         public int Id => id;
         public string? Name => name;
-        public int CityId => cityId;
+        public City City => city;
 
-        public Customer(int id, string? name, int cityId)
+        public Customer(int id, string? name, City city)
         {
             this.id = id;
             this.name = name;
-            this.cityId = cityId;
+            this.city = city;
         }
     }
 }

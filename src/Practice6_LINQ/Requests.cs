@@ -43,22 +43,17 @@ namespace Practice6_LINQ
         }
 
         private IEnumerable<string?> GetCustomersFromLA() =>
-            customers.Where(customer => customer.CityId == cities.Where(city => city.Name == "Los-Angeles").First().Id).Select(customer => customer.Name);
-        private int GetCustomersNumberWithoutOrders()
-        {
-            var customersWithOrders = orders.Select(order => order.CustomerId);
-            var allCustomersId = customers.Select(customer => customer.Id);
-            return allCustomersId.Except(customersWithOrders).Count();
-        }
+            customers.Where(customer => customer.City.Name == "Los-Angeles").Select(customer => customer.Name);
+        private int GetCustomersNumberWithoutOrders() => customers.Except(orders.Select(order => order.Customer)).Count();
         private string? GetCustomersInfo()
         {
-            var customersInfo = customers.Join(cities, customer => customer.CityId, city => city.Id, (customer, city) => new
+            var customersInfo = customers.Select(customer => new
             {
                 CustomerName = customer.Name,
-                CityName = city.Name,
-                CityCode = city.CityCode,
-                OrdersNumber = orders.Count(o => o.CustomerId == customer.Id),
-                LastOrderDate = orders.Where(o => o.CustomerId == customer.Id).Select(o => o.Date).DefaultIfEmpty().Max()
+                CityName = customer.City.Name,
+                CityCode = customer.City.CityCode,
+                OrdersNumber = orders.Count(o => o.Customer.Id == customer.Id),
+                LastOrderDate = orders.Where(o => o.Customer.Id == customer.Id).Select(o => o.Date).DefaultIfEmpty().Max()
             });
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in customersInfo)
@@ -69,20 +64,20 @@ namespace Practice6_LINQ
             return stringBuilder.ToString();
         }
         private IEnumerable<string?> GetCustomersWithMoreThan2OrdersOrdered() =>
-            customers.Where(c => orders.Count(o => o.CustomerId == c.Id) > 2).OrderBy(c => c.Name).Select(c => c.Name);
+            customers.Where(c => orders.Count(o => o.Customer.Id == c.Id) > 2).OrderBy(c => c.Name).Select(c => c.Name);
         private string? GetCustomersWithOrdersGroupByCities()
         {
-            var customersWithOrdersGroupCity = customers.Join(orders, c => c.Id, o => o.CustomerId, (c, o) => new
+            var customersWithOrdersGroupCity = customers.Join(orders, c => c.Id, o => o.Customer.Id, (c, o) => new
             {
                 Customer = c,
                 Order = o,
-            }).GroupBy(customer => customer.Customer.CityId).Join(cities, p => p.Key, city => city.Id, (p, city) => new
+            }).GroupBy(customer => customer.Customer.City.Id).Join(cities, p => p.Key, city => city.Id, (p, city) => new
             {
                 CityName = city.Name,
                 Customers = p.Select(cust => new
                 {
                     cust.Customer.Name,
-                    OrdersNumber = orders.Count(o => o.CustomerId == cust.Customer.Id)
+                    OrdersNumber = orders.Count(o => o.Customer.Id == cust.Customer.Id)
                 }).Distinct()
             });
             StringBuilder stringBuilder = new StringBuilder();
@@ -100,15 +95,15 @@ namespace Practice6_LINQ
             customers.Select(c => new
             {
                 Customer = c,
-                AverageOrders = customers.Where(cust => cust.CityId == c.CityId).Average(cust => orders.Count(o => o.CustomerId == cust.Id))
-            }).Where(c => orders.Count(o => o.CustomerId == c.Customer.Id) < c.AverageOrders).Select(c => c.Customer);
+                AverageOrders = customers.Where(cust => cust.City.Id == c.City.Id).Average(cust => orders.Count(o => o.Customer.Id == cust.Id))
+            }).Where(c => orders.Count(o => o.Customer.Id == c.Customer.Id) < c.AverageOrders).Select(c => c.Customer);
         private City GetCityWithTheMostSpends()
         {
-            var cityToTotalSpend = orders.GroupBy(o => o.CustomerId).Join(customers, o => o.Key, customer => customer.Id, (o, customer) => new
+            var cityToTotalSpend = orders.GroupBy(o => o.Customer.Id).Join(customers, o => o.Key, customer => customer.Id, (o, customer) => new
             {
                 o,
                 customer
-            }).Join(cities, line => line.customer.CityId, city => city.Id, (line, city) => new
+            }).Join(cities, line => line.customer.City.Id, city => city.Id, (line, city) => new
             {
                 City = city,
                 TotalSpend = line.o.Sum(o => o.Price)
@@ -120,9 +115,9 @@ namespace Practice6_LINQ
             var lowestSpendingCustomers = customers.Select(c => new
             {
                 CustomerName = c.Name,
-                CityName = cities.FirstOrDefault(city => city.Id == c.CityId)?.Name,
-                OrdersNumber = orders.Count(o => o.CustomerId == c.Id),
-                TotalSpend = orders.Where(o => o.CustomerId == c.Id).Sum(o => o.Price)
+                CityName = cities.FirstOrDefault(city => city.Id == c.City.Id)?.Name,
+                OrdersNumber = orders.Count(o => o.Customer.Id == c.Id),
+                TotalSpend = orders.Where(o => o.Customer.Id == c.Id).Sum(o => o.Price)
             }).OrderBy(x => x.TotalSpend).Take(3);
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var item in lowestSpendingCustomers)
