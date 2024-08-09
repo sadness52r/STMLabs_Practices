@@ -5,19 +5,16 @@
         private static void Main(string[] args)
         {
             ThreadController threadController = new ThreadController();
+            Console.WriteLine("Console has been run!");
             while (true)
             {
-                int numberOfThreads = int.Parse(Console.ReadLine());
-                if (numberOfThreads > 0)
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out int threadCount))
                 {
-                    for (int i = 0; i < numberOfThreads; i++)
+                    for (int i = 0; i < threadCount; i++)
                     {
-                        threadController.CreateThread($"Thread {i + 1}");
+                        threadController.CreateThread();
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Введите корректное число.");
                 }
             }
         }

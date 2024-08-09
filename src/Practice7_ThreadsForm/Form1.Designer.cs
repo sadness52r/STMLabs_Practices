@@ -46,6 +46,7 @@
             // 
             // numericUpDownNThreads
             // 
+            numericUpDownNThreads.Enabled = false;
             numericUpDownNThreads.Location = new Point(324, 34);
             numericUpDownNThreads.Name = "numericUpDownNThreads";
             numericUpDownNThreads.Size = new Size(120, 23);

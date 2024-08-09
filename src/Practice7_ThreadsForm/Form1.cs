@@ -1,33 +1,26 @@
-using Practice7_ThreadsConsole;
-
 namespace Practice7_ThreadsForm
 {
     public partial class Form1 : Form
     {
-        private int numberClicksStartButton = 0;
+        private ProcessController processController;
 
         public Form1()
         {
+            processController = new ProcessController();
             InitializeComponent();
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            ProcessController? processController = null;
-            if (numberClicksStartButton == 0)
+            try
             {
-                numberClicksStartButton++;
-                processController = new ProcessController(@"Practice7_ThreadsConsole.exe");
-                processController.Run();
+                processController.StartProcess(@"Practice7_ThreadsConsole.exe");
+                processController.SendCommand($"{numericUpDownNThreads.Value}");
+                numericUpDownNThreads.Enabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                //for (int i = 0; i < numericUpDownNThreads.Value; i++)
-                //{
-                //    processController?.processConsole.StandardInput.WriteLine($"Create thread {i}");
-                //    ThreadController threadController = new ThreadContoller($"Thread {i + 1}", processController?.processConsole);
-                //}
-                processController?.processConsole.StandardInput.WriteLine(numericUpDownNThreads.Value.ToString());
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

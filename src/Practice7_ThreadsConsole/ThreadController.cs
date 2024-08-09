@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-
-namespace Practice7_ThreadsConsole
+﻿namespace Practice7_ThreadsConsole
 {
     public class ThreadController
     {
-        Thread thread = null;
-
-        private void Run()
+        public void CreateThread()
         {
-            Console.WriteLine($"Thread {thread?.Name} is running...");
-            Thread.Sleep(2000);
-            Console.WriteLine($"Thread {thread?.Name} was stopped!");
-        }
-
-        public void CreateThread(string name)
-        {
-            thread = new Thread(this.Run);
-            thread.Name = name;
+            Thread thread = new Thread(() =>
+            {
+                Console.WriteLine("Created a new thread: " + Thread.CurrentThread.ManagedThreadId);
+            });
             thread.Start();
         }
     }

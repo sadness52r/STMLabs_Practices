@@ -1,38 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace Practice7_ThreadsForm
 {
     internal class ProcessController
     {
-        private readonly string _processName;
-        public readonly Process processConsole;
-        
-        public ProcessController(string processName)
+        public Process processConsole;
+
+        public void StartProcess(string filePath)
         {
-            _processName = processName;
-            processConsole = new Process();
-            processConsole.StartInfo.FileName = _processName;
-            processConsole.EnableRaisingEvents = true;
-            processConsole.StartInfo.UseShellExecute = false;
-            processConsole.StartInfo.RedirectStandardOutput = true;
-            processConsole.OutputDataReceived += (s, args) =>
+            if (processConsole == null || processConsole.HasExited)
             {
-                if (!string.IsNullOrEmpty(args.Data))
-                {
-                    Console.WriteLine(args.Data);
-                }
-            };
+                processConsole = new Process();
+                processConsole.StartInfo.FileName = filePath;
+                processConsole.StartInfo.UseShellExecute = false;
+                processConsole.StartInfo.RedirectStandardInput = true;
+                processConsole.Start();
+            }
         }
 
-        public void Run()
+        public void SendCommand(string command)
         {
-            processConsole.Start();
-            processConsole.BeginOutputReadLine();
+            if (processConsole != null && !processConsole.HasExited)
+            {
+                processConsole.StandardInput.WriteLine(command);
+            }
+            else
+            {
+                throw new InvalidOperationException("Process has not been run or finished!");
+            }
+        }
+
+        public void StopProcess()
+        {
+            if (processConsole != null && !processConsole.HasExited)
+            {
+                processConsole.Kill();
+                processConsole.Dispose();
+                processConsole = null;
+            }
         }
     }
 }
