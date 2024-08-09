@@ -16,5 +16,6 @@
             }
             return curClient.PassportSeries + " " + curClient.PassportNumber;
         }
+        public override string ToString() => "Manager";
     }
 }

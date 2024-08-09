@@ -4,6 +4,9 @@
     {
         private Worker worker;
         private Client client;
+        private string? oldPassport;
+
+        public string? OldPassport => oldPassport;
 
         public FormChangePassport(Worker worker, Client client)
         {
@@ -14,6 +17,7 @@
 
         private void buttonAcceptPassport_Click(object sender, EventArgs e)
         {
+            oldPassport = client.PassportSeries + " " + client.PassportNumber;
             client.PassportSeries = maskedTextBoxNewPassportSeries.Text;
             client.PassportNumber = maskedTextBoxNewPassportNumber.Text;
             MessageBox.Show("Passport successfully changed!");

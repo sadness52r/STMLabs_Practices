@@ -5,6 +5,9 @@
         private Worker worker;
         private Client client;
         private FullnameType concreteInitial;
+        private string? oldConcreteName;
+
+        public string? OldConcreteName => oldConcreteName;
 
         public FormChangeConcreteName(Worker worker, Client client, FullnameType concreteInitial)
         {
@@ -24,14 +27,17 @@
             switch (concreteInitial)
             {
                 case FullnameType.SURNAME:
+                    oldConcreteName = client.Surname;
                     client.Surname = maskedTextBoxNewConcreteName.Text;
                     MessageBox.Show("Surname successfully changed!");
                     break;
                 case FullnameType.NAME:
+                    oldConcreteName = client.Name;
                     client.Name = maskedTextBoxNewConcreteName.Text;
                     MessageBox.Show("Name successfully changed!");
                     break;
                 case FullnameType.PATRONYMIC:
+                    oldConcreteName = client.Patronymic;
                     client.Patronymic = maskedTextBoxNewConcreteName.Text;
                     MessageBox.Show("Patronymic successfully changed!");
                     break;

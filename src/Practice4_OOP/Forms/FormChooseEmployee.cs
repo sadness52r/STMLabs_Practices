@@ -36,6 +36,10 @@ namespace Practice4_OOP
                         break;
                 }
             }
+            catch (ClientAlreadyExistsException ex)
+            {
+                logger.LogError(ex, ex.Message);
+            }
             catch (FileNotFoundException ex)
             {
                 logger.LogError(ex, ex.Message);

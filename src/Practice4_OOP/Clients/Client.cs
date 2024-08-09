@@ -3,6 +3,10 @@
     internal class Client
     {
         private string surname, name, patronymic, phoneNumber, passportSeries, passportNumber;
+        private DateTime lastDateOfChanges;
+        private ChangableProperty changableProp;
+        private string typeOfChanges;
+        private Worker? changerOfData;
 
         public string Surname
         {
@@ -34,10 +38,29 @@
             get => phoneNumber;
             set => phoneNumber = value;
         }
+        public DateTime LastDateOfChanges
+        {
+            get => lastDateOfChanges;
+            set => lastDateOfChanges = value;
+        }
+        public ChangableProperty ChangableProp
+        {
+            get => changableProp;
+            set => changableProp = value;
+        }
+        public string TypeOfChanges 
+        {
+            get => typeOfChanges;
+            set => typeOfChanges = value;
+        }
+        public Worker? ChangerOfData
+        {
+            get => changerOfData;
+            set => changerOfData = value;
+        }
 
         public Client(string surname, string name, string phoneNumber, string passportSeries, string passportNumber) :
-            this(surname, name, "", phoneNumber, passportSeries, passportNumber)
-        { }
+            this(surname, name, "", phoneNumber, passportSeries, passportNumber) { }
         public Client(string surname, string name, string patronymic, string phoneNumber,
             string passportSeries, string passportNumber)
         {
@@ -47,6 +70,10 @@
             this.phoneNumber = phoneNumber;
             this.passportSeries = passportSeries;
             this.passportNumber = passportNumber;
+            lastDateOfChanges = DateTime.Now;
+            changableProp = ChangableProperty.None;
+            typeOfChanges = "";
+            changerOfData = null;
         }
 
         public static bool operator ==(Client left, Client right)
@@ -72,12 +99,10 @@
         {
             return base.Equals(obj);
         }
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
-
         public override string? ToString()
         {
             return base.ToString();
