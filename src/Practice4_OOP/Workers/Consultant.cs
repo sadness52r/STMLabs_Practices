@@ -18,5 +18,6 @@
                 string.Empty : new string('*', curClient.PassportSeries.Length) + " "
                 + new string('*', curClient.PassportNumber.Length));
         }
+        public override string ToString() => "Consultant";
     }
 }
