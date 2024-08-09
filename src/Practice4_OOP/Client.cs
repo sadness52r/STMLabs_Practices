@@ -2,14 +2,33 @@
 {
     internal class Client
     {
-        private readonly string surname, name, patronymic, passportSeries, passportNumber;
-        private string phoneNumber;
+        private string surname, name, patronymic, phoneNumber, passportSeries, passportNumber;
 
-        public string Surname => surname;
-        public string Name => name;
-        public string Patronymic => patronymic;
-        public string PassportSeries => passportSeries;
-        public string PassportNumber => passportNumber;
+        public string Surname
+        {
+            get => surname;
+            set => surname = value;
+        }
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+        public string Patronymic
+        {
+            get => patronymic;
+            set => patronymic = value;
+        }
+        public string PassportSeries
+        {
+            get => passportSeries;
+            set => passportSeries = value;
+        }
+        public string PassportNumber
+        {
+            get => passportNumber;
+            set => passportNumber = value;
+        }
         public string PhoneNumber
         {
             get => phoneNumber;

@@ -5,7 +5,7 @@
         public Consultant()
         {
             clients = new Dictionary<string, Client>();
-            image = Image.FromFile("Materials/consultant.jpg");
+            image = Image.FromFile(Worker.CONSULTANT_PIC);
         }
 
         public override string GetPassportData()

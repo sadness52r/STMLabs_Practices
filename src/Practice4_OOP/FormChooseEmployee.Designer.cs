@@ -39,19 +39,21 @@
             comboBoxChooseEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxChooseEmployee.FormattingEnabled = true;
             comboBoxChooseEmployee.ImeMode = ImeMode.NoControl;
-            comboBoxChooseEmployee.Items.AddRange(new object[] { "Consultant" });
-            comboBoxChooseEmployee.Location = new Point(280, 285);
+            comboBoxChooseEmployee.Items.AddRange(new object[] { "Consultant", "Manager" });
+            comboBoxChooseEmployee.Location = new Point(320, 380);
+            comboBoxChooseEmployee.Margin = new Padding(3, 4, 3, 4);
             comboBoxChooseEmployee.Name = "comboBoxChooseEmployee";
-            comboBoxChooseEmployee.Size = new Size(239, 23);
+            comboBoxChooseEmployee.Size = new Size(273, 28);
             comboBoxChooseEmployee.TabIndex = 0;
             comboBoxChooseEmployee.SelectedIndexChanged += comboBoxChooseEmployee_SelectedIndexChanged;
             // 
             // buttonOpenMain
             // 
             buttonOpenMain.Enabled = false;
-            buttonOpenMain.Location = new Point(340, 372);
+            buttonOpenMain.Location = new Point(389, 496);
+            buttonOpenMain.Margin = new Padding(3, 4, 3, 4);
             buttonOpenMain.Name = "buttonOpenMain";
-            buttonOpenMain.Size = new Size(118, 42);
+            buttonOpenMain.Size = new Size(135, 56);
             buttonOpenMain.TabIndex = 1;
             buttonOpenMain.Text = "Open";
             buttonOpenMain.UseVisualStyleBackColor = true;
@@ -59,22 +61,25 @@
             // 
             // pictureBoxJobTitle
             // 
-            pictureBoxJobTitle.Location = new Point(340, 149);
+            pictureBoxJobTitle.Location = new Point(389, 199);
+            pictureBoxJobTitle.Margin = new Padding(3, 4, 3, 4);
             pictureBoxJobTitle.Name = "pictureBoxJobTitle";
-            pictureBoxJobTitle.Size = new Size(118, 115);
+            pictureBoxJobTitle.Size = new Size(135, 153);
             pictureBoxJobTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxJobTitle.TabIndex = 2;
             pictureBoxJobTitle.TabStop = false;
             // 
             // FormChooseEmployee
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(pictureBoxJobTitle);
             Controls.Add(buttonOpenMain);
             Controls.Add(comboBoxChooseEmployee);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "FormChooseEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Choose Employee";

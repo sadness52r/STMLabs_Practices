@@ -37,9 +37,9 @@
             // 
             labelChangePhoneTitle.AutoSize = true;
             labelChangePhoneTitle.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
-            labelChangePhoneTitle.Location = new Point(322, 96);
+            labelChangePhoneTitle.Location = new Point(356, 127);
             labelChangePhoneTitle.Name = "labelChangePhoneTitle";
-            labelChangePhoneTitle.Size = new Size(150, 30);
+            labelChangePhoneTitle.Size = new Size(193, 37);
             labelChangePhoneTitle.TabIndex = 1;
             labelChangePhoneTitle.Text = "Change phone";
             labelChangePhoneTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -47,9 +47,10 @@
             // buttonAcceptPhone
             // 
             buttonAcceptPhone.Enabled = false;
-            buttonAcceptPhone.Location = new Point(360, 200);
+            buttonAcceptPhone.Location = new Point(411, 267);
+            buttonAcceptPhone.Margin = new Padding(3, 4, 3, 4);
             buttonAcceptPhone.Name = "buttonAcceptPhone";
-            buttonAcceptPhone.Size = new Size(65, 33);
+            buttonAcceptPhone.Size = new Size(74, 44);
             buttonAcceptPhone.TabIndex = 2;
             buttonAcceptPhone.Text = "Accept";
             buttonAcceptPhone.UseVisualStyleBackColor = true;
@@ -58,10 +59,11 @@
             // maskedTextBoxNewPhone
             // 
             maskedTextBoxNewPhone.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            maskedTextBoxNewPhone.Location = new Point(342, 159);
+            maskedTextBoxNewPhone.Location = new Point(391, 212);
+            maskedTextBoxNewPhone.Margin = new Padding(3, 4, 3, 4);
             maskedTextBoxNewPhone.Mask = "00000000000";
             maskedTextBoxNewPhone.Name = "maskedTextBoxNewPhone";
-            maskedTextBoxNewPhone.Size = new Size(101, 23);
+            maskedTextBoxNewPhone.Size = new Size(115, 27);
             maskedTextBoxNewPhone.TabIndex = 3;
             maskedTextBoxNewPhone.TextAlign = HorizontalAlignment.Center;
             maskedTextBoxNewPhone.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -69,12 +71,14 @@
             // 
             // FormChangePhone
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(maskedTextBoxNewPhone);
             Controls.Add(buttonAcceptPhone);
             Controls.Add(labelChangePhoneTitle);
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "FormChangePhone";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Change Phone";

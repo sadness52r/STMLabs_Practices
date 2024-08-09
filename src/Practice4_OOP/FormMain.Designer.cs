@@ -32,6 +32,10 @@
             labelJobTitle = new Label();
             comboBoxClients = new ComboBox();
             panelClientInfo = new Panel();
+            buttonChangePassport = new Button();
+            buttonChangePatronymic = new Button();
+            buttonChangeName = new Button();
+            buttonChangeSurname = new Button();
             buttonChangePhone = new Button();
             labelClientPassport = new Label();
             labelClientPhone = new Label();
@@ -51,10 +55,9 @@
             // 
             // pictureBoxJobTitle
             // 
-            pictureBoxJobTitle.Location = new Point(35, 16);
-            pictureBoxJobTitle.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxJobTitle.Location = new Point(40, 21);
             pictureBoxJobTitle.Name = "pictureBoxJobTitle";
-            pictureBoxJobTitle.Size = new Size(113, 107);
+            pictureBoxJobTitle.Size = new Size(129, 143);
             pictureBoxJobTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxJobTitle.TabIndex = 0;
             pictureBoxJobTitle.TabStop = false;
@@ -62,9 +65,9 @@
             // labelJobTitle
             // 
             labelJobTitle.AutoSize = true;
-            labelJobTitle.Location = new Point(64, 136);
+            labelJobTitle.Location = new Point(73, 181);
             labelJobTitle.Name = "labelJobTitle";
-            labelJobTitle.Size = new Size(38, 15);
+            labelJobTitle.Size = new Size(50, 20);
             labelJobTitle.TabIndex = 1;
             labelJobTitle.Text = "label1";
             // 
@@ -74,14 +77,19 @@
             comboBoxClients.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxClients.FormattingEnabled = true;
             comboBoxClients.ImeMode = ImeMode.NoControl;
-            comboBoxClients.Location = new Point(1433, 16);
+            comboBoxClients.Location = new Point(1637, 21);
+            comboBoxClients.Margin = new Padding(3, 4, 3, 4);
             comboBoxClients.Name = "comboBoxClients";
-            comboBoxClients.Size = new Size(239, 23);
+            comboBoxClients.Size = new Size(273, 28);
             comboBoxClients.TabIndex = 4;
             comboBoxClients.SelectedIndexChanged += comboBoxClients_SelectedIndexChanged;
             // 
             // panelClientInfo
             // 
+            panelClientInfo.Controls.Add(buttonChangePassport);
+            panelClientInfo.Controls.Add(buttonChangePatronymic);
+            panelClientInfo.Controls.Add(buttonChangeName);
+            panelClientInfo.Controls.Add(buttonChangeSurname);
             panelClientInfo.Controls.Add(buttonChangePhone);
             panelClientInfo.Controls.Add(labelClientPassport);
             panelClientInfo.Controls.Add(labelClientPhone);
@@ -94,18 +102,66 @@
             panelClientInfo.Controls.Add(labelClientSurnameTitle);
             panelClientInfo.Controls.Add(labelClientNameTitle);
             panelClientInfo.Dock = DockStyle.Bottom;
-            panelClientInfo.Location = new Point(0, 627);
-            panelClientInfo.Margin = new Padding(3, 2, 3, 2);
+            panelClientInfo.Location = new Point(0, 650);
             panelClientInfo.Name = "panelClientInfo";
-            panelClientInfo.Size = new Size(1684, 304);
+            panelClientInfo.Size = new Size(1924, 405);
             panelClientInfo.TabIndex = 5;
+            // 
+            // buttonChangePassport
+            // 
+            buttonChangePassport.Enabled = false;
+            buttonChangePassport.Location = new Point(450, 335);
+            buttonChangePassport.Margin = new Padding(3, 4, 3, 4);
+            buttonChangePassport.Name = "buttonChangePassport";
+            buttonChangePassport.Size = new Size(103, 57);
+            buttonChangePassport.TabIndex = 14;
+            buttonChangePassport.Text = "Change Passport";
+            buttonChangePassport.UseVisualStyleBackColor = true;
+            buttonChangePassport.Click += buttonChangePassport_Click;
+            // 
+            // buttonChangePatronymic
+            // 
+            buttonChangePatronymic.Enabled = false;
+            buttonChangePatronymic.Location = new Point(238, 335);
+            buttonChangePatronymic.Margin = new Padding(3, 4, 3, 4);
+            buttonChangePatronymic.Name = "buttonChangePatronymic";
+            buttonChangePatronymic.Size = new Size(97, 57);
+            buttonChangePatronymic.TabIndex = 13;
+            buttonChangePatronymic.Text = "Change Patronymic";
+            buttonChangePatronymic.UseVisualStyleBackColor = true;
+            buttonChangePatronymic.Click += buttonChangePatronymic_Click;
+            // 
+            // buttonChangeName
+            // 
+            buttonChangeName.Enabled = false;
+            buttonChangeName.Location = new Point(129, 335);
+            buttonChangeName.Margin = new Padding(3, 4, 3, 4);
+            buttonChangeName.Name = "buttonChangeName";
+            buttonChangeName.Size = new Size(103, 57);
+            buttonChangeName.TabIndex = 12;
+            buttonChangeName.Text = "Change Name";
+            buttonChangeName.UseVisualStyleBackColor = true;
+            buttonChangeName.Click += buttonChangeName_Click;
+            // 
+            // buttonChangeSurname
+            // 
+            buttonChangeSurname.Enabled = false;
+            buttonChangeSurname.Location = new Point(14, 335);
+            buttonChangeSurname.Margin = new Padding(3, 4, 3, 4);
+            buttonChangeSurname.Name = "buttonChangeSurname";
+            buttonChangeSurname.Size = new Size(109, 57);
+            buttonChangeSurname.TabIndex = 11;
+            buttonChangeSurname.Text = "Change Surname";
+            buttonChangeSurname.UseVisualStyleBackColor = true;
+            buttonChangeSurname.Click += buttonChangeSurname_Click;
             // 
             // buttonChangePhone
             // 
             buttonChangePhone.Enabled = false;
-            buttonChangePhone.Location = new Point(12, 253);
+            buttonChangePhone.Location = new Point(341, 335);
+            buttonChangePhone.Margin = new Padding(3, 4, 3, 4);
             buttonChangePhone.Name = "buttonChangePhone";
-            buttonChangePhone.Size = new Size(102, 48);
+            buttonChangePhone.Size = new Size(103, 57);
             buttonChangePhone.TabIndex = 10;
             buttonChangePhone.Text = "Change Phone";
             buttonChangePhone.UseVisualStyleBackColor = true;
@@ -114,85 +170,85 @@
             // labelClientPassport
             // 
             labelClientPassport.AutoSize = true;
-            labelClientPassport.Location = new Point(92, 226);
+            labelClientPassport.Location = new Point(105, 301);
             labelClientPassport.Name = "labelClientPassport";
-            labelClientPassport.Size = new Size(0, 15);
+            labelClientPassport.Size = new Size(0, 20);
             labelClientPassport.TabIndex = 9;
             // 
             // labelClientPhone
             // 
             labelClientPhone.AutoSize = true;
-            labelClientPhone.Location = new Point(92, 202);
+            labelClientPhone.Location = new Point(105, 269);
             labelClientPhone.Name = "labelClientPhone";
-            labelClientPhone.Size = new Size(0, 15);
+            labelClientPhone.Size = new Size(0, 20);
             labelClientPhone.TabIndex = 8;
             // 
             // labelClientPatronymic
             // 
             labelClientPatronymic.AutoSize = true;
-            labelClientPatronymic.Location = new Point(92, 179);
+            labelClientPatronymic.Location = new Point(105, 239);
             labelClientPatronymic.Name = "labelClientPatronymic";
-            labelClientPatronymic.Size = new Size(0, 15);
+            labelClientPatronymic.Size = new Size(0, 20);
             labelClientPatronymic.TabIndex = 7;
             // 
             // labelClientName
             // 
             labelClientName.AutoSize = true;
-            labelClientName.Location = new Point(92, 156);
+            labelClientName.Location = new Point(105, 208);
             labelClientName.Name = "labelClientName";
-            labelClientName.Size = new Size(0, 15);
+            labelClientName.Size = new Size(0, 20);
             labelClientName.TabIndex = 6;
             // 
             // labelClientSurname
             // 
             labelClientSurname.AutoSize = true;
-            labelClientSurname.Location = new Point(92, 133);
+            labelClientSurname.Location = new Point(105, 177);
             labelClientSurname.Name = "labelClientSurname";
-            labelClientSurname.Size = new Size(0, 15);
+            labelClientSurname.Size = new Size(0, 20);
             labelClientSurname.TabIndex = 5;
             // 
             // labelPassportTitle
             // 
             labelPassportTitle.AutoSize = true;
-            labelPassportTitle.Location = new Point(12, 226);
+            labelPassportTitle.Location = new Point(14, 301);
             labelPassportTitle.Name = "labelPassportTitle";
-            labelPassportTitle.Size = new Size(55, 15);
+            labelPassportTitle.Size = new Size(67, 20);
             labelPassportTitle.TabIndex = 4;
             labelPassportTitle.Text = "Passport:";
             // 
             // labelPhoneTitle
             // 
             labelPhoneTitle.AutoSize = true;
-            labelPhoneTitle.Location = new Point(12, 202);
+            labelPhoneTitle.Location = new Point(14, 269);
             labelPhoneTitle.Name = "labelPhoneTitle";
-            labelPhoneTitle.Size = new Size(44, 15);
+            labelPhoneTitle.Size = new Size(53, 20);
             labelPhoneTitle.TabIndex = 3;
             labelPhoneTitle.Text = "Phone:";
             // 
             // labelClientPatronymicTitle
             // 
             labelClientPatronymicTitle.AutoSize = true;
-            labelClientPatronymicTitle.Location = new Point(12, 179);
+            labelClientPatronymicTitle.Location = new Point(14, 239);
             labelClientPatronymicTitle.Name = "labelClientPatronymicTitle";
-            labelClientPatronymicTitle.Size = new Size(71, 15);
+            labelClientPatronymicTitle.Size = new Size(85, 20);
             labelClientPatronymicTitle.TabIndex = 2;
             labelClientPatronymicTitle.Text = "Patronymic:";
             // 
             // labelClientSurnameTitle
             // 
             labelClientSurnameTitle.AutoSize = true;
-            labelClientSurnameTitle.Location = new Point(12, 133);
+            labelClientSurnameTitle.Location = new Point(14, 177);
             labelClientSurnameTitle.Name = "labelClientSurnameTitle";
-            labelClientSurnameTitle.Size = new Size(57, 15);
+            labelClientSurnameTitle.Size = new Size(70, 20);
             labelClientSurnameTitle.TabIndex = 1;
             labelClientSurnameTitle.Text = "Surname:";
             // 
             // labelClientNameTitle
             // 
             labelClientNameTitle.AutoSize = true;
-            labelClientNameTitle.Location = new Point(12, 156);
+            labelClientNameTitle.Location = new Point(14, 208);
             labelClientNameTitle.Name = "labelClientNameTitle";
-            labelClientNameTitle.Size = new Size(42, 15);
+            labelClientNameTitle.Size = new Size(52, 20);
             labelClientNameTitle.TabIndex = 0;
             labelClientNameTitle.Text = "Name:";
             // 
@@ -205,16 +261,18 @@
             panelAllMain.Controls.Add(panelClientInfo);
             panelAllMain.Dock = DockStyle.Fill;
             panelAllMain.Location = new Point(0, 0);
+            panelAllMain.Margin = new Padding(3, 4, 3, 4);
             panelAllMain.Name = "panelAllMain";
-            panelAllMain.Size = new Size(1684, 931);
+            panelAllMain.Size = new Size(1924, 1055);
             panelAllMain.TabIndex = 6;
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1684, 931);
+            ClientSize = new Size(1924, 1055);
             Controls.Add(panelAllMain);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormMain";
             Text = "FormMain";
             WindowState = FormWindowState.Maximized;
@@ -246,5 +304,9 @@
         private Label labelClientSurname;
         private Button buttonChangePhone;
         private Panel panelAllMain;
+        private Button buttonChangeSurname;
+        private Button buttonChangeName;
+        private Button buttonChangePassport;
+        private Button buttonChangePatronymic;
     }
 }
