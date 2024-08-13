@@ -9,8 +9,6 @@
         protected Client? curClient = null;
         protected Image? image;
 
-        public abstract string GetPassportData();
-
         public Dictionary<string, Client>? Clients
         {
             get { return clients; }
@@ -22,5 +20,7 @@
             set { curClient = value; }
         }
         public Image? Image => image;
+
+        public abstract string GetPassportData();
     }
 }

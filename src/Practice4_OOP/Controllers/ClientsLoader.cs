@@ -30,6 +30,10 @@
                         passportSeries = line[ind++];
                         passportNumber = line[ind++];
                     }
+                    if (clients.ContainsKey(phoneNumber))
+                    {
+                        throw new ClientAlreadyExistsException($"Client with phone {phoneNumber} is already exists!");
+                    }
                     clients.Add(phoneNumber, new Client(surname, name, patronymic, phoneNumber, passportSeries, passportNumber));
                 }
             }
