@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice1_Git", "src\Practi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice2_Basics", "src\Practice2_Basics\Practice2_Basics.csproj", "{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice5_MySerializer", "src\Practice5_MySerializer\Practice5_MySerializer.csproj", "{D07DF7D3-7F26-4DF3-92DD-962BAB2B701E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice5_MySerializer", "src\Practice5_MySerializer\Practice5_MySerializer.csproj", "{D07DF7D3-7F26-4DF3-92DD-962BAB2B701E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice5_TestClassesReflection", "src\Practice5_TestClassesReflection\Practice5_TestClassesReflection.csproj", "{D94F8912-136A-44BE-96E9-A5A982E2D0E9}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice3_DelegatesEventsException", "src\Practice3_DelegatesEventsException\Practice3_DelegatesEventsException.csproj", "{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice5_TestClassesReflection", "src\Practice5_TestClassesReflection\Practice5_TestClassesReflection.csproj", "{D94F8912-136A-44BE-96E9-A5A982E2D0E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice3_DelegatesEventsException", "src\Practice3_DelegatesEventsException\Practice3_DelegatesEventsException.csproj", "{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice9_EFCore", "src\Practice9_EFCore\Practice9_EFCore.csproj", "{1AC67DBB-3D30-472C-8456-346543079BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +41,10 @@ Global
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC67DBB-3D30-472C-8456-346543079BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC67DBB-3D30-472C-8456-346543079BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC67DBB-3D30-472C-8456-346543079BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC67DBB-3D30-472C-8456-346543079BAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
