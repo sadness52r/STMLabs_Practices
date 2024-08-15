@@ -8,14 +8,11 @@ namespace Practice7_ThreadsForm
 
         public void StartProcess(string filePath)
         {
-            if (processConsole == null || processConsole.HasExited)
-            {
-                processConsole = new Process();
-                processConsole.StartInfo.FileName = filePath;
-                processConsole.StartInfo.UseShellExecute = false;
-                processConsole.StartInfo.RedirectStandardInput = true;
-                processConsole.Start();
-            }
+            processConsole = new Process();
+            processConsole.StartInfo.FileName = filePath;
+            processConsole.StartInfo.UseShellExecute = false;
+            processConsole.StartInfo.RedirectStandardInput = true;
+            processConsole.Start();
         }
 
         public void SendCommand(string command)
@@ -29,14 +26,12 @@ namespace Practice7_ThreadsForm
                 throw new InvalidOperationException("Process has not been run or finished!");
             }
         }
-
         public void StopProcess()
         {
             if (processConsole != null && !processConsole.HasExited)
             {
-                processConsole.Kill();
-                processConsole.Dispose();
-                processConsole = null;
+                SendCommand("Exit");
+                processConsole.WaitForExit();
             }
         }
     }

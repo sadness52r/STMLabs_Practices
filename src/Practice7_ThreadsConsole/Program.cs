@@ -1,22 +1,56 @@
-﻿namespace Practice7_ThreadsConsole
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using System.IO.Pipes;
+using Newtonsoft.Json;
+
+namespace Practice7_ThreadsConsole
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            ThreadController threadController = new ThreadController();
-            Console.WriteLine("Console has been run!");
-            while (true)
+            ILogger logger = LoggerFactory.Create(builder =>
             {
-                string input = Console.ReadLine();
-                if (int.TryParse(input, out int threadCount))
+                builder.AddConsole();
+                builder.SetMinimumLevel(LogLevel.Error);
+            }).CreateLogger<Program>();
+            try
+            {
+                Config? config = LoadConfig();
+                NamedPipeServerStream pipeServer = new NamedPipeServerStream("DataPipe", PipeDirection.Out);
+                TaskController taskController = new TaskController(pipeServer, config.Delay, config.ItemsToLoad);
+                pipeServer.WaitForConnection();
+
+                Console.WriteLine("Console has been run!");
+                while (true)
                 {
-                    for (int i = 0; i < threadCount; i++)
+                    string input = Console.ReadLine();
+                    if (input.StartsWith("Start"))
                     {
-                        threadController.CreateThread();
+                        int threadCount = int.Parse(input.Split(' ')[1]);
+                        for (int i = 0; i < threadCount; i++)
+                        {
+                            taskController.CreateTask();
+                        }
+                        continue;
+                    }
+                    if (input == "Stop")
+                    {
+                        taskController.RemoveTask();
+                        continue;
+                    }
+                    if (input == "Exit")
+                    {
+                        break;
                     }
                 }
+                pipeServer.Close();
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.LogError(ex.Message, ex);
             }
         }
+        private static Config? LoadConfig() => JsonConvert.DeserializeObject<Config>(File.ReadAllText("config.json"));
     }
 }
