@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice7_ThreadsConsole
+﻿namespace Practice7_ThreadsConsole
 {
     internal class TaskWrapper
     {
+        private int itemsToLoad, delay;
         public Task Task { get; private set; }
         public CancellationTokenSource CancellationTokenSource { get; private set; }
-        //private Func<CancellationToken, Task> taskFunc;
 
-        public TaskWrapper(Action<CancellationToken> taskFunc)
+        public TaskWrapper(int delay, int itemsToload)
         {
-            //this.taskFunc = taskFunc;
+            this.delay = delay;
+            this.itemsToLoad = itemsToload;
             CancellationTokenSource = new CancellationTokenSource();
-            Task = Task.Run(() => taskFunc(CancellationTokenSource.Token));
         }
 
+        public void RunTask(Action<TaskWrapper> taskMethod)
+        {
+            Task = Task.Run(() => taskMethod(this));
+        }
         public void CancelTask()
         {
             CancellationTokenSource.Cancel();

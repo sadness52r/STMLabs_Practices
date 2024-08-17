@@ -5,13 +5,17 @@ namespace Practice7_ThreadsForm
     internal class ProcessController
     {
         public Process processConsole;
+        private Form1 form;
 
-        public void StartProcess(string filePath)
+        public void StartProcess(string filePath, Form1 form)
         {
+            this.form = form;
             processConsole = new Process();
             processConsole.StartInfo.FileName = filePath;
             processConsole.StartInfo.UseShellExecute = false;
             processConsole.StartInfo.RedirectStandardInput = true;
+            processConsole.EnableRaisingEvents = true;
+            processConsole.Exited += Process_Exited;
             processConsole.Start();
         }
 
@@ -33,6 +37,12 @@ namespace Practice7_ThreadsForm
                 SendCommand("Exit");
                 processConsole.WaitForExit();
             }
+        }
+
+        private void Process_Exited(object sender, EventArgs e)
+        {
+            form.Invoke(new Action(form.CloseConsole));
+            MessageBox.Show("Console application closed!");
         }
     }
 }

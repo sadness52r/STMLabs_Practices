@@ -108,6 +108,7 @@
             Controls.Add(buttonStart);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
             ((System.ComponentModel.ISupportInitialize)numericUpDownNThreads).EndInit();
             ResumeLayout(false);
         }
@@ -118,7 +119,7 @@
         private NumericUpDown numericUpDownNThreads;
         public ListBox listBoxFileText;
         private ComboBox comboBoxTasks;
-        private Button buttonStop;
         public ListBox listBox1;
+        public Button buttonStop;
     }
 }

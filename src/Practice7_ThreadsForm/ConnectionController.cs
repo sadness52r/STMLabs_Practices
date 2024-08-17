@@ -10,7 +10,6 @@ namespace Practice7_ThreadsForm
 {
     internal class ConnectionController
     {
-        //private CancellationTokenSource cts;
         private Task task;
         private NamedPipeClientStream pipeClient;
         private StreamReader? reader;
@@ -19,7 +18,6 @@ namespace Practice7_ThreadsForm
         public ConnectionController(Form1 form)
         {
             this.form = form;
-            //cts = new CancellationTokenSource();
         }
 
         public void StartPipeClient()
@@ -34,9 +32,9 @@ namespace Practice7_ThreadsForm
                 {
                     form.listBox1.Items.Add("Task added!");
                 }));
-                while (true)
+                while (pipeClient.IsConnected)
                 {
-                    string line = reader.ReadLine();
+                    string? line = reader.ReadLine();
                     if (line == null) break;
 
                     form.Invoke((Action)(() =>
@@ -52,7 +50,6 @@ namespace Practice7_ThreadsForm
         }
         public void ClosePipeClient()
         {
-            //cts.Cancel();
             pipeClient?.Close();
         }
     }

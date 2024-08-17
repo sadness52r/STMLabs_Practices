@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using System.IO.Pipes;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.IO.Pipes;
 
 namespace Practice7_ThreadsConsole
 {
     internal class Program
     {
+        private const string FILENAME = "piter1.txt";
+        private const string FILE_POSITIONS = "file_positions.json";
         private static void Main(string[] args)
         {
             ILogger logger = LoggerFactory.Create(builder =>
@@ -18,7 +19,22 @@ namespace Practice7_ThreadsConsole
             {
                 Config? config = LoadConfig();
                 NamedPipeServerStream pipeServer = new NamedPipeServerStream("DataPipe", PipeDirection.Out);
-                TaskController taskController = new TaskController(pipeServer, config.Delay, config.ItemsToLoad);
+                TaskController taskController = new TaskController(config.Delay, config.ItemsToLoad, pipeServer/*, writers*/);
+                AppDomain.CurrentDomain.ProcessExit += (sender, e) =>
+                {
+                    RequestExit(taskController, pipeServer);
+                };
+
+                string[] lines;
+                if (File.Exists(FILE_POSITIONS))
+                {
+                    lines = JsonConvert.DeserializeObject<string[]>(File.ReadAllText(FILE_POSITIONS));
+                }
+                else
+                {
+                    lines = File.ReadAllLines(FILENAME);
+                }
+                taskController.FileToQueue(lines);
                 pipeServer.WaitForConnection();
 
                 Console.WriteLine("Console has been run!");
@@ -30,7 +46,7 @@ namespace Practice7_ThreadsConsole
                         int threadCount = int.Parse(input.Split(' ')[1]);
                         for (int i = 0; i < threadCount; i++)
                         {
-                            taskController.CreateTask();
+                            taskController.CreateTask(/*lastFilePositions*/);
                         }
                         continue;
                     }
@@ -44,7 +60,6 @@ namespace Practice7_ThreadsConsole
                         break;
                     }
                 }
-                pipeServer.Close();
             }
             catch (FileNotFoundException ex)
             {
@@ -52,5 +67,14 @@ namespace Practice7_ThreadsConsole
             }
         }
         private static Config? LoadConfig() => JsonConvert.DeserializeObject<Config>(File.ReadAllText("config.json"));
+        private static void RequestExit(TaskController taskController, NamedPipeServerStream pipeServer)
+        {
+            taskController.AbortAllTasks();
+            using (StreamWriter streamWriter = new StreamWriter(FILE_POSITIONS))
+            {
+                streamWriter.Write(JsonConvert.SerializeObject(taskController.QueueToArray()));
+            }
+            pipeServer.Close();
+        }
     }
 }

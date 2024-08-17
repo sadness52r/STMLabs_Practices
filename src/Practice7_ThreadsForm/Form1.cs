@@ -1,14 +1,10 @@
-using System.IO.Pipes;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace Practice7_ThreadsForm
 {
     public partial class Form1 : Form
     {
+        private const string FILE_POSITIONS = "file_positions.json";
         private ProcessController processController;
         private ConnectionController connectionController;
-        private int numThreads = 0;
 
         public Form1()
         {
@@ -23,19 +19,22 @@ namespace Practice7_ThreadsForm
             {
                 if (processController.processConsole == null || processController.processConsole.HasExited)
                 {
-                    processController.StartProcess(@"Practice7_ThreadsConsole.exe");
+                    processController.StartProcess(@"Practice7_ThreadsConsole.exe", this);
                     comboBoxTasks.Items.Add("All threads");
                     comboBoxTasks.Items.Add("Main thread");
                     connectionController.StartPipeClient();
                     numericUpDownNThreads.Enabled = true;
                     buttonStop.Enabled = true;
                 }
-                processController.SendCommand($"Start {numericUpDownNThreads.Value}");
-                for (int i = numThreads; i < numericUpDownNThreads.Value; i++)
+                if (numericUpDownNThreads.Value != 0)
                 {
-                    comboBoxTasks.Items.Add($"Thread {i + 1}");
+                    processController.SendCommand($"Start {numericUpDownNThreads.Value}");
+                    for (int i = 0; i < numericUpDownNThreads.Value; i++)
+                    {
+                        comboBoxTasks.Items.Add($"Thread {i + 1}");
+                    }
+                    numericUpDownNThreads.Enabled = false;
                 }
-                numThreads = (int)numericUpDownNThreads.Value;
             }
             catch (Exception ex)
             {
@@ -51,20 +50,27 @@ namespace Practice7_ThreadsForm
             }
             else
             {
-                connectionController.ClosePipeClient();
-                processController.StopProcess();
-                comboBoxTasks.Items.Clear();
-                numericUpDownNThreads.Enabled = false;
-                buttonStop.Enabled = false;
+                CloseConsole();
             }
         }
-        //private void ConsoleProcess_Exited(object sender, EventArgs e)
-        //{
-        //    Invoke((Action)(() =>
-        //    {
-                
-        //    }));
-        //    connectionController.ClosePipeClient();
-        //}
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (File.Exists(FILE_POSITIONS))
+            {
+                File.Delete(FILE_POSITIONS);
+            }
+            processController.StopProcess();
+        }
+
+        public void CloseConsole()
+        {
+            this.Enabled = false;
+            processController.StopProcess();
+            connectionController.ClosePipeClient();
+            comboBoxTasks.Items.Clear();
+            numericUpDownNThreads.Enabled = false;
+            buttonStop.Enabled = false;
+            this.Enabled = true;
+        } 
     }
 }
