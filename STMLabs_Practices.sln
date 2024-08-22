@@ -7,10 +7,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice1_Git", "src\Practi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice2_Basics", "src\Practice2_Basics\Practice2_Basics.csproj", "{6BB78E63-3D27-47EB-8336-883CC9D0A5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice5_MySerializer", "src\Practice5_MySerializer\Practice5_MySerializer.csproj", "{D07DF7D3-7F26-4DF3-92DD-962BAB2B701E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice5_MySerializer", "src\Practice5_MySerializer\Practice5_MySerializer.csproj", "{D07DF7D3-7F26-4DF3-92DD-962BAB2B701E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice5_TestClassesReflection", "src\Practice5_TestClassesReflection\Practice5_TestClassesReflection.csproj", "{D94F8912-136A-44BE-96E9-A5A982E2D0E9}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice3_DelegatesEventsException", "src\Practice3_DelegatesEventsException\Practice3_DelegatesEventsException.csproj", "{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice5_TestClassesReflection", "src\Practice5_TestClassesReflection\Practice5_TestClassesReflection.csproj", "{D94F8912-136A-44BE-96E9-A5A982E2D0E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice3_DelegatesEventsException", "src\Practice3_DelegatesEventsException\Practice3_DelegatesEventsException.csproj", "{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice9_EFCore", "src\Practice9_EntityFrameworkCore\Practice9_EFCore\Practice9_EFCore.csproj", "{D64C3727-9B49-43FF-99A4-8F476CE03B4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{4CE86DB8-BEC3-41EF-A101-88A86B1DF289}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice9_EFCore.Domain", "src\Practice9_EntityFrameworkCore\Domain\Practice9_EFCore.Domain\Practice9_EFCore.Domain.csproj", "{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8A4F2B68-4CFD-4CD1-85E2-F2A421770280}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice9_EFCore.Infrastructure", "src\Practice9_EntityFrameworkCore\Infrastructure\Practice9_EFCore.Infrastructure\Practice9_EFCore.Infrastructure.csproj", "{FAF8CC90-86F8-4091-A067-1AED7EF80D12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F89EC1B6-83E3-42F9-86B8-A98511CE6F8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice9_EFCore.Services", "src\Practice9_EntityFrameworkCore\Services\Practice9_EFCore.Services\Practice9_EFCore.Services.csproj", "{51E3C664-0413-44B7-9F10-667C97CF2BF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +53,30 @@ Global
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F78EF6C-3AA3-4584-AFDE-CC052F6AF860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64C3727-9B49-43FF-99A4-8F476CE03B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64C3727-9B49-43FF-99A4-8F476CE03B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64C3727-9B49-43FF-99A4-8F476CE03B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64C3727-9B49-43FF-99A4-8F476CE03B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF8CC90-86F8-4091-A067-1AED7EF80D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF8CC90-86F8-4091-A067-1AED7EF80D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF8CC90-86F8-4091-A067-1AED7EF80D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF8CC90-86F8-4091-A067-1AED7EF80D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E3C664-0413-44B7-9F10-667C97CF2BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E3C664-0413-44B7-9F10-667C97CF2BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E3C664-0413-44B7-9F10-667C97CF2BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E3C664-0413-44B7-9F10-667C97CF2BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5FB33DA-FFD9-4E06-8218-CCB94FE3EAB8} = {4CE86DB8-BEC3-41EF-A101-88A86B1DF289}
+		{FAF8CC90-86F8-4091-A067-1AED7EF80D12} = {8A4F2B68-4CFD-4CD1-85E2-F2A421770280}
+		{51E3C664-0413-44B7-9F10-667C97CF2BF2} = {F89EC1B6-83E3-42F9-86B8-A98511CE6F8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {702FE169-8A50-4BAF-ACB9-99D5535C679B}
