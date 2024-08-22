@@ -5,17 +5,18 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 5016
+EXPOSE 5432
 
 
 # Этот этап используется для сборки проекта службы
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Practice9_EFCore/Practice9_EFCore.csproj", "src/Practice9_EFCore/"]
-RUN dotnet restore "./src/Practice9_EFCore/Practice9_EFCore.csproj"
+COPY ["src/Practice9_EntityFrameworkCore/Practice9_EFCore/Practice9_EFCore.csproj", "src/Practice9_EntityFrameworkCore/Practice9_EFCore/"]
+RUN dotnet restore "./src/Practice9_EntityFrameworkCore/Practice9_EFCore/Practice9_EFCore.csproj"
 COPY . .
-WORKDIR "/src/src/Practice9_EFCore"
+WORKDIR "/src/src/Practice9_EntityFrameworkCore/Practice9_EFCore"
 RUN dotnet build "./Practice9_EFCore.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап
