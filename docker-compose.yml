@@ -4,17 +4,18 @@ services:
     image: practice9_efcore_catalog:latest
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src\Practice9_EntityFrameworkCore\Practice9_EFCore
     ports:
-      - "8080:80"
-    depends_on:
-      - db
+      - "8080:8080"
+      - "8081:8081"
 
-  db:
+  EFCorePractice:
     image: postgres:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12442
-      POSTGRES_DB: EFCorePractice
+      POSTGRES_USER=postgres
+      POSTGRES_PASSWORD=12442
+      POSTGRES_DB=EFCorePractice
+    volumes:
+     - ./.containers/products-db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
