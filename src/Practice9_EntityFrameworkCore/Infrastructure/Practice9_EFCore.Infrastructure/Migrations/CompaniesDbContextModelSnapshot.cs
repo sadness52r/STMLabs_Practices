@@ -36,6 +36,18 @@ namespace Practice9_EFCore.Infrastructure.Migrations
                     b.HasIndex("RubricsId");
 
                     b.ToTable("CompanyEntityRubricEntity");
+
+                    b.HasData(
+                        new
+                        {
+                            CompaniesId = new Guid("4d8ce470-28a5-4f63-96ba-f84fc36b0f48"),
+                            RubricsId = new Guid("22636eed-e20e-422f-af9e-589e091821ca")
+                        },
+                        new
+                        {
+                            CompaniesId = new Guid("a6c018b1-0b1f-4f9c-b821-27a41a207d5e"),
+                            RubricsId = new Guid("d853397a-8af6-45e6-8c56-2bb2743a941c")
+                        });
                 });
 
             modelBuilder.Entity("Practice9_EFCore.Domain.Models.BuildingEntity", b =>
@@ -57,6 +69,22 @@ namespace Practice9_EFCore.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Buildings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("58e5045c-1fe3-4bfe-81e5-4d0df71b607f"),
+                            Address = "Блюхера, 32/1",
+                            XPosition = 32.5,
+                            YPosition = 12.6
+                        },
+                        new
+                        {
+                            Id = new Guid("aae64205-018c-462b-a4b0-f75cc4176149"),
+                            Address = "Сахарова, 72/15",
+                            XPosition = 231.31999999999999,
+                            YPosition = 1.5
+                        });
                 });
 
             modelBuilder.Entity("Practice9_EFCore.Domain.Models.CompanyEntity", b =>
@@ -81,6 +109,22 @@ namespace Practice9_EFCore.Infrastructure.Migrations
                     b.HasIndex("BuildingId");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4d8ce470-28a5-4f63-96ba-f84fc36b0f48"),
+                            BuildingId = new Guid("58e5045c-1fe3-4bfe-81e5-4d0df71b607f"),
+                            Name = "ООО Рога и Копыта",
+                            Phones = new List<string> { "2-222-222", "3-333-333" }
+                        },
+                        new
+                        {
+                            Id = new Guid("a6c018b1-0b1f-4f9c-b821-27a41a207d5e"),
+                            BuildingId = new Guid("aae64205-018c-462b-a4b0-f75cc4176149"),
+                            Name = "ООО Мясной Продукт",
+                            Phones = new List<string> { "8-923-666-13-13" }
+                        });
                 });
 
             modelBuilder.Entity("Practice9_EFCore.Domain.Models.RubricEntity", b =>
@@ -101,6 +145,25 @@ namespace Practice9_EFCore.Infrastructure.Migrations
                     b.HasIndex("ParentRubricId");
 
                     b.ToTable("Rubrics");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("db3517e4-d76c-42f0-8595-22f7a56d8797"),
+                            Name = "Еда"
+                        },
+                        new
+                        {
+                            Id = new Guid("22636eed-e20e-422f-af9e-589e091821ca"),
+                            Name = "Полуфабрикаты оптом",
+                            ParentRubricId = new Guid("db3517e4-d76c-42f0-8595-22f7a56d8797")
+                        },
+                        new
+                        {
+                            Id = new Guid("d853397a-8af6-45e6-8c56-2bb2743a941c"),
+                            Name = "Мясная продукция",
+                            ParentRubricId = new Guid("22636eed-e20e-422f-af9e-589e091821ca")
+                        });
                 });
 
             modelBuilder.Entity("CompanyEntityRubricEntity", b =>

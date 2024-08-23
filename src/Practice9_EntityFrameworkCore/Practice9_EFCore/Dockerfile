@@ -25,4 +25,4 @@ RUN dotnet publish "./Practice9_EFCore.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Practice9_EFCore.dll", "database", "update"]
+ENTRYPOINT ["dotnet", "Practice9_EFCore.dll"]
